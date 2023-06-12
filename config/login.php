@@ -1,6 +1,6 @@
 <?php 
 
-$dbh = include '../config/config.php';
+$dbh = include 'config.php';
 
 if(isset($_POST['connexion'])){
     $username = $_POST['username'];

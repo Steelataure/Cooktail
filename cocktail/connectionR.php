@@ -1,3 +1,2 @@
-<?php $content = 'connection.php'; ?>
+<?php $content = 'login.php'; ?>
 <?php include 'layout.php'; ?>
-

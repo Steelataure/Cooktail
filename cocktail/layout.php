@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>My Cocktail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 
     <!-- Ajoutez ici vos balises meta, feuilles de style CSS, scripts JavaScript, etc. -->
@@ -22,10 +22,10 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="inscription.php">Inscription</a>
+        <a class="nav-link" href="inscription_link.php">Inscription</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="connectionR.php">Connection</a>
+        <a class="nav-link" href="connectionR.php">Login</a>
       </li>
     </ul>
   </div>
@@ -42,4 +42,7 @@
 </body>
 </html>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="../../public/js/script.js"></script>
