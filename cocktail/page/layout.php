@@ -39,10 +39,6 @@
         <?php include $content; ?>
     </main>
 
-    <footer>
-        <!-- Ajoutez ici le contenu de votre pied de page -->
-        <p>&copy; <?php echo date('Y'); ?> Mon site. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
 
