@@ -1,4 +1,4 @@
-   <?php include "../../../config/inscription.php" ?>
+   <?php include "../../config/inscription.php" ?>
 
    <div class="inscription">
        <form method="POST">
