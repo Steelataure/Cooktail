@@ -17,10 +17,6 @@ if (isset($_POST['inscription'])) {
     }
 
     saveUser();
-
-
-} else{
-    echo "<div><h3>Marcheeee pASS.</3></div>";
 }
 
 
