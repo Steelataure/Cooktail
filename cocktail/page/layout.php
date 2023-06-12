@@ -25,7 +25,7 @@
         <a class="nav-link" href="inscription.php">Inscription</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="connection.php">Connection</a>
+        <a class="nav-link" href="connectionR.php">Connection</a>
       </li>
     </ul>
   </div>
