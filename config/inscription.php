@@ -1,6 +1,5 @@
 <?php
 if (isset($_POST['inscription'])) {
-     echo "<div><h3 class='message'>Vos mots de passes ne correspondent pas.</3></div>";
     // if (!verifyPassword()) {
     //     return;
     // }
@@ -28,7 +27,7 @@ function getUserData(): array
         "username" => $_POST['username'],
         "email" => $_POST['email'],
         "password" => $_POST['password'],
-        "confirm_password" => ($_POST['confirm_password'], PASSWORD_DEFAULT),
+        "confirm_password" => $_POST['confirm_password'],
     ];
 }
 
@@ -38,15 +37,14 @@ function saveUser()
     $data = getUserData();
 
     // Insertion de l'utilisateur dans la base de données
-    $sql = "INSERT INTO user (id, username, email, password) VALUES (NULL, :username, :email, :password)";
+    $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, :email, :username, :password)";
     $query = $dbh->prepare($sql);
-    $query->bindParam(":username", $data["username"], PDO::PARAM_STR);
     $query->bindParam(":email", $data["email"], PDO::PARAM_STR);
+    $query->bindParam(":username", $data["username"], PDO::PARAM_STR);
     $query->bindParam(":password", $data["password"], PDO::PARAM_STR);
     $query->execute();
     echo "<div><h3>VOUS ETES CONNECTER</3></div>";
-    // header('Location: ' . $routes['home']);
-    exit;
+    header('Location: /');
 }
 
 // function verifyPassword(): bool

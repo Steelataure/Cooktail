@@ -1,5 +1,4 @@
 <?php
-
 $dsn = 'mysql:host=mysql-mycocktaildb.alwaysdata.net;dbname=mycocktaildb_mycocktail';
 $user = '317095_root';
 $password = 'Mycocktail*';
