@@ -22,10 +22,10 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="inscription_link.php">Inscription</a>
+        <a class="nav-link" href="inscription.php">Inscription</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="connectionR.php">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
     </ul>
   </div>
@@ -36,7 +36,7 @@
 
     <main>
         <!-- Le contenu spécifique à chaque page sera inséré ici -->
-        <?php include $content; ?>
+        <?php echo $content; ?>
     </main>
 
 </body>
