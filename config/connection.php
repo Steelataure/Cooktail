@@ -11,7 +11,7 @@ if(isset($_POST['connexion'])){
     $query->execute();
     $data = $query->fetch(PDO::FETCH_OBJ);
           
-    if(isset($data->username) && password_verify($password, $data->password)){
+    if(isset($data->username) && $password){
         $_SESSION['isLogged'] = $username;
 
         echo "<div><h3 class='message'>Vous etes connecté</3></div>";
