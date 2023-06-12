@@ -10,6 +10,8 @@
 <body>
 TESTING 
 
+<a class="fcc-btn" href="../../../config/connection.php">connexion</a>
 
+<a class="fcc-btn" href="../../../config/ inscription.php">inscription</a>
 </body>
 </html>
