@@ -1,7 +1,7 @@
 <?php 
 
-$dsn ='mysql:dbname=my_cocktail;localhost';
-$user = 'root';
-$password = 'root';
+$dsn ='mysql:dbname=mycocktaildb_mycocktail;mysql-mycocktaildb.alwaysdata.net';
+$user = '317095_root';
+$password = 'Mycocktail*';
 
 $dbh = new PDO($dsn, $user, $password);
