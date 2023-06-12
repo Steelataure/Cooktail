@@ -4,7 +4,7 @@ function route($url)
 {
     // Définir les routes disponibles
     $routes = array(
-        '/' => '../coktail/src/page/index',
+        '/' => '../coktail/page/index',
         '/about' => 'about',
         '/contact' => 'contact'
     );
