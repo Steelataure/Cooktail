@@ -1,6 +1,6 @@
 <?php
 
-
+$dbh = include 'config.php';
 if (isset($_POST['inscription'])) {
     if (!verifyPassword()) {
         return;
@@ -37,7 +37,7 @@ function getUserData(): array
 
 function saveUser()
 {
-    $dbh = include '../config/config.php';
+    $dbh = include 'config.php';
 
     $data = getUserData();
 
