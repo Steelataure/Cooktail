@@ -1,4 +1,4 @@
- <?php include "../../config/connection.php" ?>
+ <?php include "../config/connection.php" ?>
 
 
  <div class="connexion">

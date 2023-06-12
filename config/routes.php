@@ -5,8 +5,8 @@ function route($url)
     // Définir les routes disponibles
     $routes = array(
         '/' => '../cocktail/page/index',
-        '/inscription' => '../cocktail/page/inscription',
-        '/connection' => '../cocktail/page/connection'
+        '/inscription' => '../cocktail/inscription',
+        '/connection' => '../cocktail/connection'
     );
 
     // Vérifier si l'URL demandée correspond à une route existante
