@@ -1,4 +1,7 @@
 <?php
+
+$dbh = include '../config/config.php';
+
 if (isset($_POST['inscription'])) {
     // if (!verifyPassword()) {
     //     return;

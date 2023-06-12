@@ -1,5 +1,7 @@
 <?php 
 
+$dbh = include '../config/config.php';
+
 if(isset($_POST['connexion'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
