@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Mon site</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
     <!-- Ajoutez ici vos balises meta, feuilles de style CSS, scripts JavaScript, etc. -->
@@ -11,14 +12,11 @@
 <body>
     <header>
         <!-- Ajoutez ici le contenu de votre en-tête -->
-        <h1>Mon site</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Accueilll</a></li>
-                <li><a href="/about">À propos</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+        <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
         </nav>
+
+    
     </header>
 
     <main>
