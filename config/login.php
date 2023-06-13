@@ -16,9 +16,6 @@ if(isset($_POST['connexion'])){
 
         echo "<div><h3 class='message'>Vous etes connecté</3></div>";
     
-     
-
-  
     }else{
         echo "<div><h3 class='message'>Email ou mot de passe incorrect</3></div>";
     }
