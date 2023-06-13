@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $dbh = include 'config.php';
 if (isset($_POST['inscription'])) {

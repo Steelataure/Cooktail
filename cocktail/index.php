@@ -1,6 +1,11 @@
 <?php
-$dbh = include '../config/config.php';
 ob_start();
+session_start();
+
+$dbh = include '../config/config.php';
+
+
+
 
 // Exemple de requête de sélection pour récupérer des données de la base de données
 $query = "SELECT * FROM Ingredients";

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $dbh = include 'config.php';
 
 if (isset($_POST['connexion'])) {
@@ -15,7 +15,7 @@ if (isset($_POST['connexion'])) {
         $_SESSION['isLogged'] = $username;
         echo "<div><h3 class='message'>Vous êtes connecté</h3></div>";
         header("Location: index.php");
-        exit;
+        //exit;
     } else {
         echo "<div><h3 class='message'>Email ou mot de passe incorrect</h3></div>";
     }

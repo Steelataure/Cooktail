@@ -1,6 +1,7 @@
 <?php
-$dbh = include '../config/config.php';
 ob_start();
+include '../config/config.php';
+
 
 
 $content = ob_get_clean();

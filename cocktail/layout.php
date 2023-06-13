@@ -30,9 +30,8 @@
                 <ul class="navbar-nav">
                     <li class="nav-item d-flex justify-content-center align-items-center">
                         <span class="navbar-text">Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                        <form method="POST" class="ml-2" style="margin-bottom: 0px;margin-left: 20px !important;">
-                            <button style="color: gray;border: 1px solid black;padding: 2px 20px;" type="submit"
-                                name="deconnexion" class="btn btn-link">Déconnexion</button>
+                        <form method="POST" class="ml-2" action="logout.php" style="margin-bottom: 0px;margin-left: 20px !important;">
+                           <button style="color: gray;border: 1px solid black;padding: 2px 20px;" type="submit" name="deconnexion" class="btn btn-link">Déconnexion</button>
                         </form>
                     </li>
                 </ul>
