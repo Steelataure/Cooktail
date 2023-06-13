@@ -13,7 +13,6 @@ if(isset($_POST['connexion'])){
           
     if(isset($data->username) && $password){
         $_SESSION['isLogged'] = $username;
-
         echo "<div><h3 class='message'>Vous etes connecté</3></div>";
     
     }else{
