@@ -4,35 +4,52 @@
 
 <head>
     <title>My Cocktail</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./front/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="./front/assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Ajoutez ici vos balises meta, feuilles de style CSS, scripts JavaScript, etc. -->
 </head>
 
 <body>
-    <header>
-<nav>
-    <ul>
-        <?php if (isset($_SESSION['isLogged'])) { ?>
-            <li>
-                <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                <form method="POST" action="logout.php">
-                    <button type="submit" name="deconnexion">Déconnexion</button>
-                </form>
-            </li>
-        <?php } else { ?>
-            <li>
-                <a href="inscription.php">Inscription</a>
-            </li>
-            <li>
-                <a href="login.php">Login</a>
-            </li>
-        <?php } ?>
-        <li><a href="#menu">Menu</a></li>
-    </ul>
-</nav>
+<header id="header">
+      
+  <nav>
+      <ul>
+          <?php if (isset($_SESSION['isLogged'])) { ?>
+              <li>
+                  <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
+                  <form method="POST" action="logout.php">
+                      <button type="submit" name="deconnexion">Déconnexion</button>
+                  </form>
+              </li>
+          <?php } else { ?>
+              <li>
+                  <a href="inscription.php">Inscription</a>
+              </li>
+              <li>
+                  <a href="login.php">Login</a>
+              </li>
+          <?php } ?>
+          <li><a href="#menu">Menu</a></li>
+      </ul>
+  </nav>
+  </header>
 
+  <!-- Menu -->
+    <nav id="menu">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="./front/generic.html">Ipsum veroeros</a></li>
+        <li><a href="./front/generic.html">Tempus etiam</a></li>
+        <li><a href="./front/generic.html">Consequat dolor</a></li>
+        <li><a href="./front/elements.html">Elements</a></li>
+      </ul>
+    </nav>
 
     </header>
 
@@ -93,7 +110,9 @@
 
 </html>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="../../public/js/script.js"></script>
+<!-- Scripts -->
+<script src="./front/assets/js/jquery.min.js"></script>
+<script src="./front/assets/js/browser.min.js"></script>
+<script src="./front/assets/js/breakpoints.min.js"></script>
+<script src="./front/assets/js/util.js"></script>
+<script src="./front/assets/js/main.js"></script>

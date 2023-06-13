@@ -1,13 +1,8 @@
 <?php
 ob_start();
+session_start();
 ?>
-	<head>
-		<title>Cooktail</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="./front/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="./front/assets/css/noscript.css" /></noscript>
-	</head>
+
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -15,41 +10,11 @@ ob_start();
 				<!-- Header -->
 					<header id="header">
 						<div class="inner">
-
 							<!-- Logo -->
 								<a href="index.html" class="logo">
 									<span class="symbol"><img src="./front/images/logo.svg" alt="" /></span><span class="title">Cooktail</span>
 								</a>
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-                      <?php if (isset($_SESSION['isLogged'])){ ?>
-                      <div>
-                          <ul>
-                              <li>
-                                  <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                                  <form method="POST" action="logout.php">
-                                  <button type="submit" name="deconnexion">Déconnexion</button>
-                                  </form>
-                              </li>
-                          </ul>
-                      </div>
-                      <?php } else { ?>
-                      <div>
-                          <ul>
-                              <li>
-                                  <a href="inscription.php">Inscription</a>
-                              </li>
-                              <li>
-                                  <a href="login.php">Login</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <?php } ?>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
 
 						</div>
 					</header>
@@ -252,14 +217,6 @@ ob_start();
 					</footer>
 
 			</div>
-
-		<!-- Scripts -->
-			<script src="./front/assets/js/jquery.min.js"></script>
-			<script src="./front/assets/js/browser.min.js"></script>
-			<script src="./front/assets/js/breakpoints.min.js"></script>
-			<script src="./front/assets/js/util.js"></script>
-			<script src="./front/assets/js/main.js"></script>
-
 	</body>
 
 <?php
