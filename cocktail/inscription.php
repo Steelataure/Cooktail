@@ -1,7 +1,6 @@
 <?php
 ob_start();
 include "../config/inscription.php";
-
 ?>
 
 <div class="container">

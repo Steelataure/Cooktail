@@ -1,28 +1,28 @@
 <?php
 session_start();
-
 $dbh = include 'config.php';
+
 if (isset($_POST['inscription'])) {
     if (!verifyPassword()) {
         return;
     }
 
-    // Vérification si l'email est déjà utilisé dans la base de données
-    $user = $dbh->prepare("SELECT * FROM user WHERE email = :email");
-    $user->bindParam(':email', $data["email"]);
-    $user->execute();
+    $email = $_POST['email'];
 
-    if ($user->fetch(PDO::FETCH_ASSOC)) {
-        echo "<div><h3 class='message'>Cet e-mail est déjà utilisé. </3></div>";
+    // Vérification si l'email est déjà utilisé dans la base de données
+    $stmt = $dbh->prepare("SELECT * FROM user WHERE email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+
+    if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<div><h3 class='message'>Cet e-mail est déjà utilisé.</h3></div>";
         return;
     }
 
     saveUser();
 }
 
-
-
-function getUserData(): array
+function getUserData()
 {
     return [
         "username" => $_POST['username'],
@@ -35,39 +35,43 @@ function getUserData(): array
 function saveUser()
 {
     $dbh = include 'config.php';
-
     $data = getUserData();
+    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
     // Insertion de l'utilisateur dans la base de données
-    $sql = "INSERT INTO user (id, email, username, password) VALUES (NULL, :email, :username, :password)";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(":email", $data["email"], PDO::PARAM_STR);
-    $query->bindParam(":username", $data["username"], PDO::PARAM_STR);
-    $query->bindParam(":password", $data["password"], PDO::PARAM_STR);
-    $query->execute();
-    echo "<div><h3>VOUS ETES CONNECTER</3></div>";
-    header('Location: /');
+    $stmt = $dbh->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
+    $stmt->bindParam(":username", $data["username"]);
+    $stmt->bindParam(":email", $data["email"]);
+    $stmt->bindParam(":password", $hashedPassword);
+    $stmt->execute();
+
+    echo "<div><h3 class='message'>Inscription réussie.</h3></div>";
+    // Rediriger vers la page de connexion
+    header("Location: login.php");
 }
 
-function verifyPassword(): bool
+function verifyPassword()
 {
     $data = getUserData();
 
     // Vérification que les deux mots de passe sont identiques
-    if ($data["password"] != $data["confirm_password"]) {
-        echo "<div><h3 class='message'>Vos mots de passes ne correspondent pas.</3></div>";
+    if ($data["password"] !== $data["confirm_password"]) {
+        echo "<div><h3 class='message'>Vos mots de passe ne correspondent pas.</h3></div>";
         return false;
     }
+
     // Vérification que le mot de passe a au moins 8 caractères
     if (strlen($data["password"]) < 8) {
-        echo "<div><h3 class='message'>Votre mot de passe doit contenir au moins 8 caractères. </3></div>";
+        echo "<div><h3 class='message'>Votre mot de passe doit contenir au moins 8 caractères.</h3></div>";
         return false;
     }
+
     // Vérification que le mot de passe contient une majuscule
-    if (!preg_match("#[A-Z ]#", $data["password"])) {
-        echo "<div><h3 class='message'>Votre mot de passe doit contenir une majuscule. </3></div>";
+    if (!preg_match("/[A-Z]/", $data["password"])) {
+        echo "<div><h3 class='message'>Votre mot de passe doit contenir au moins une majuscule.</h3></div>";
         return false;
     }
 
     return true;
 }
+?>

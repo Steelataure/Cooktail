@@ -1,4 +1,4 @@
- <?php 
+<?php 
  include "../config/login.php";
  ob_start();
  ?>
