@@ -69,7 +69,7 @@ if (count($results) > 0) :
 							<span class="image">
 								<img src="./front/images/Ustensiles/Ustensiles<?= $row['imageID'] ?>.png" alt="" />
 							</span>
-							<a href="">
+							<a href="./commande?id=<?= $row['UstensileID'] ?>">
 								<h2><?= $row['Libelle'] ?></h2>
 								<div class="content">
 									<p><?= $row['Description'] ?></p>
