@@ -21,6 +21,8 @@ Cocktails.id = Cocktails_Ingredients.CocktailID AND Ingredients.id = Cocktails_I
 $stmt2 = $dbh->query($query2);
 $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
+$rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
+$rootDir = basename(dirname($rootDir));
 // Affichage des résultats
 if (count($results) > 0) :
 ?>
@@ -33,7 +35,7 @@ if (count($results) > 0) :
 					<header id="header">
 						<div class="inner">
 							<!-- Logo -->
-								<a href="index.html" class="logo">
+								<a href="index" class="logo">
 									<span class="symbol"><img src="./front/images/logo.svg" alt="" /></span><span class="title">Cooktail</span>
 								</a>
 
@@ -46,10 +48,10 @@ if (count($results) > 0) :
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="#">Home</a></li>
-							<li><a href="./front/generic.html">Ipsum veroeros</a></li>
+							<!-- <li><a href="./front/generic.html">Ipsum veroeros</a></li>
 							<li><a href="./front/generic.html">Tempus etiam</a></li>
 							<li><a href="./front/generic.html">Consequat dolor</a></li>
-							<li><a href="./front/elements.html">Elements</a></li>
+							<li><a href="./front/elements.html">Elements</a></li> -->
 						</ul>
 					</nav>
 
@@ -64,14 +66,19 @@ if (count($results) > 0) :
 							<section class="tiles">
 							
                             
-                            <?php foreach ($results as $row) : ?>
-                                
-
+                            <?php 
+							foreach ($results as $key => $row):
+							?>
+                            
                             <article class="">
                                 <span class="image">
-                                    <img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" />
+								<div class="d-flex align-items-center position-relative">
+										<img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" class="img-fluid" />
+										<!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
+								</div>
+
                                 </span>
-                                <a href="">
+                                <a href="#">
                                     <h2><?= $row['CocktailLibelle'] ?></h2>
                                     <div class="content">
 										<?php if (count($result) > 0) :

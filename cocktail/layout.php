@@ -17,26 +17,37 @@
 <body>
 <header id="header">
       
-  <nav>
-      <ul>
-          <?php if (isset($_SESSION['isLogged'])) { ?>
-              <li>
-                  <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                  <form method="POST" action="logout">
-                      <button type="submit" name="deconnexion">Déconnexion</button>
-                  </form>
-              </li>
-          <?php } else { ?>
-              <li>
-                  <a href="inscription">Inscription</a>
-              </li>
-              <li>
-                  <a href="login">Login</a>
-              </li>
-          <?php } ?>
-          <li><a href="#menu">Menu</a></li>
-      </ul>
-  </nav>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="navbar-brand" href="index">Accueil</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="shop">Boutique</a>
+            </li>
+            <?php if (isset($_SESSION['isLogged'])) { ?>
+                <li class="nav-item">
+                    <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
+                    <form method="POST" action="logout">
+                        <button type="submit" name="deconnexion">Déconnexion</button>
+                    </form>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="inscription">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                </li>
+            <?php } ?>
+            <li class="nav-item">
+                <a class="nav-link" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
   </header>
 
   <!-- Menu -->
@@ -44,10 +55,10 @@
       <h2>Menu</h2>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="./front/generic.html">Ipsum veroeros</a></li>
-        <li><a href="./front/generic.html">Tempus etiam</a></li>
-        <li><a href="./front/generic.html">Consequat dolor</a></li>
-        <li><a href="./front/elements.html">Elements</a></li>
+        <li><a href="index">Accueil</a></li>
+        <li><a href="shop">Boutique</a></li>
+        <li><a href="./front/generic.html"></a></li>
+        <li><a href="./front/elements.html"></a></li>
       </ul>
     </nav>
 
