@@ -1,6 +1,24 @@
 <?php
 ob_start();
 session_start();
+
+$dbh = include '../config/config.php';
+
+// Exemple de requête de sélection pour récupérer des données de la base de données
+// $query = "SELECT * FROM Cocktails AND Cocktails_Ingredients";
+// $stmt = $dbh->query($query);
+// $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$query = "SELECT Cocktails.*, Cocktails_Ingredients.*
+FROM Cocktails
+JOIN Cocktails_Ingredients ON Cocktails.id = Cocktails_Ingredients.CocktailID;";
+$stmt = $dbh->query($query);
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+// Affichage des résultats
+if (count($results) > 0) :
 ?>
 
 	<body class="is-preload">
@@ -31,15 +49,38 @@ session_start();
 						</ul>
 					</nav>
 
+                    
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1>Cooktail</h1>
-								<p>Projet étudiant</p>
+								<h1>Nos Recettes phares.</h1>
+								<p>bla bla bla.</p>
 							</header>
 							<section class="tiles">
-								<article class="style1">
+							
+                            
+                            <?php foreach ($results as $row) : ?>
+                                
+
+                            <article class="">
+                                <span class="image">
+                                    <img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" />
+                                </span>
+                                <a href="">
+                                    <h2><?= $row['Libelle'] ?></h2>
+                                    <div class="content">
+                                        <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+                                    </div>
+                                </a>
+                            </article>
+                            <?php endforeach; ?>
+                            <?php else : ?>
+                            Aucun résultat trouvé.
+                            <?php endif;?>
+
+                            
+								<!-- <article class="style1">
 									<span class="image">
 										<img src="./front/images/pic01.jpg" alt="" />
 									</span>
@@ -49,128 +90,8 @@ session_start();
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
 									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="./front/images/pic02.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Lorem</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="./front/images/pic03.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Feugiat</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="./front/images/pic04.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Tempus</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="./front/images/pic05.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Aliquam</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="./front/images/pic06.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Veroeros</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="./front/images/pic07.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Ipsum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="./front/images/pic08.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Dolor</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style1">
-									<span class="image">
-										<img src="./front/images/pic09.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Nullam</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="./front/images/pic10.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Ultricies</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="./front/images/pic11.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Dictum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="./front/images/pic12.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Pretium</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
+								</article> -->
+
 							</section>
 						</div>
 					</div>
