@@ -22,16 +22,16 @@
           <?php if (isset($_SESSION['isLogged'])) { ?>
               <li>
                   <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                  <form method="POST" action="logout.php">
+                  <form method="POST" action="logout">
                       <button type="submit" name="deconnexion">Déconnexion</button>
                   </form>
               </li>
           <?php } else { ?>
               <li>
-                  <a href="inscription.php">Inscription</a>
+                  <a href="inscription">Inscription</a>
               </li>
               <li>
-                  <a href="login.php">Login</a>
+                  <a href="login">Login</a>
               </li>
           <?php } ?>
           <li><a href="#menu">Menu</a></li>

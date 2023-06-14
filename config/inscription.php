@@ -47,7 +47,7 @@ function saveUser()
 
     echo "<div><h3 class='message'>Inscription réussie.</h3></div>";
     // Rediriger vers la page de connexion
-    header("Location: login.php");
+    header("Location: login");
 }
 
 function verifyPassword()

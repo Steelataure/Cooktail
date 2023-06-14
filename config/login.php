@@ -14,7 +14,7 @@ if (isset($_POST['connexion'])) {
     if (isset($data->username) && password_verify($password, $data->password)) {
         $_SESSION['isLogged'] = $username;
         echo "<div><h3 class='message'>Vous êtes connecté</h3></div>";
-        header("Location: index.php");
+        header("Location: index");
         exit;
     } else {
         echo "<div><h3 class='message'>Nom d'utilisateur ou mot de passe incorrect</h3></div>";

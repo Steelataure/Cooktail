@@ -14,10 +14,11 @@ if (!isset($_GET['id'])) {
 $itemId = $_GET['id'];
 
 // Récupération de l'article depuis la base de données
-$sql = "SELECT s.*, f.Path FROM Shop s
-        JOIN Ustensiles u ON s.id = u.ShopID
-        JOIN Files f ON u.imageID = f.id
-        WHERE s.id = :id";
+$sql = "SELECT Shop.*, Files.Path 
+        FROM Shop 
+        JOIN Ustensiles ON Shop.id = Ustensiles.ShopID 
+        JOIN Files ON Ustensiles.imageID = Files.id 
+        WHERE Shop.id = :id";
 $query = $dbh->prepare($sql);
 $query->bindParam(":id", $itemId, PDO::PARAM_INT);
 $query->execute();

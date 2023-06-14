@@ -3,7 +3,7 @@ include "../config/login.php";
 ob_start();
 
 if (isset($_SESSION['isLogged'])) {
-    header("Location: index.php");
+    header("Location: index");
     exit;
 }
 ?>
@@ -24,7 +24,7 @@ if (isset($_SESSION['isLogged'])) {
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <button type="submit" class="btn btn-primary" name="connexion">Connexion</button>
-                        <a class="btn btn-link" href="inscription.php">Vous n'avez pas de compte ? Créez-vous en un
+                        <a class="btn btn-link" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
                             !</a>
                     </form>
                 </div>
