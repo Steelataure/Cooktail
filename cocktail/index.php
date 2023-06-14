@@ -36,26 +36,12 @@ if (count($results) > 0) :
 						<div class="inner">
 							<!-- Logo -->
 								<a href="index" class="logo">
-									<span class="symbol"><img src="./front/images/logo.png" alt="" /></span><span class="title">Cooktail</span>
+									<span class="symbol"><i class="fas fa-cocktail" style="font-size "></i></span><span class="title">Cooktail</span>
 								</a>
-
 
 						</div>
 					</header>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="#">Home</a></li>
-							<!-- <li><a href="./front/generic.html">Ipsum veroeros</a></li>
-							<li><a href="./front/generic.html">Tempus etiam</a></li>
-							<li><a href="./front/generic.html">Consequat dolor</a></li>
-							<li><a href="./front/elements.html">Elements</a></li> -->
-						</ul>
-					</nav>
-
-                    
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
