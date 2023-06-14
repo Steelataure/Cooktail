@@ -7,9 +7,9 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./front/assets/css/main.css" />
-    <link rel="stylesheet" href="./front/assets/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="./front/assets/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="./front/assets/css/custom.css" />
     <noscript><link rel="stylesheet" href="./front/assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="style.css">
