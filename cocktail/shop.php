@@ -1,143 +1,133 @@
 <?php
 ob_start();
 session_start();
+
+$dbh = include '../config/config.php';
+
+// Exemple de requête de sélection pour récupérer des données de la base de données
+// $query = "SELECT * FROM Cocktails AND Cocktails_Ingredients";
+// $stmt = $dbh->query($query);
+// $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$query = "SELECT *  FROM Shop, Ustensiles WHERE Shop.id = Ustensiles.ShopID;";
+$stmt = $dbh->query($query);
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Affichage des résultats
+if (count($results) > 0) :
 ?>
 
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+<body class="is-preload">
+	<!-- Wrapper -->
+		<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="./front/images/logo.svg" alt="" /></span><span class="title">Cooktail</span>
-								</a>
-
-
-						</div>
-					</header>
-
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="./front/generic.html">Ipsum veroeros</a></li>
-							<li><a href="./front/generic.html">Tempus etiam</a></li>
-							<li><a href="./front/generic.html">Consequat dolor</a></li>
-							<li><a href="./front/elements.html">Elements</a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<h1>Cooktail</h1>
-								<p>Projet étudiant</p>
-							</header>
-                            
-                            <section class="tiles">
-    <?php
-    $articles = [
-        [
-            'image' => './front/images/pic01.jpg',
-            'title' => 'Magna',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-        [
-            'image' => './front/images/pic02.jpg',
-            'title' => 'Lorem',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-        [
-            'image' => './front/images/pic03.jpg',
-            'title' => 'Feugiat',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-        [
-            'image' => './front/images/pic03.jpg',
-            'title' => 'Feugiat',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-        [
-            'image' => './front/images/pic03.jpg',
-            'title' => 'Feugiat',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-        [
-            'image' => './front/images/pic03.jpg',
-            'title' => 'Feugiat',
-            'content' => 'Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.',
-        ],
-    ];
-
-    foreach ($articles as $article) {
-        ?>
-        <article class="style1">
-            <span class="image">
-                <img src="<?php echo $article['image']; ?>" alt="" />
-            </span>
-            <a href="#">
-                <h2><?php echo $article['title']; ?></h2>
-                <div class="content">
-                    <p><?php echo $article['content']; ?></p>
-                </div>
-            </a>
-        </article>
-        <?php
-    }
-    ?>
-</section>
-
-						</div>
+			<!-- Header -->
+				<header id="header">
+					<div class="inner">
+						<!-- Logo -->
+							<a href="index.html" class="logo">
+								<span class="symbol"><img src="./front/images/logo.svg" alt="" /></span><span class="title">Cooktail</span>
+							</a>
 					</div>
+				</header>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<h2>Get in touch</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="field">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
+			<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="./front/generic.html">Ipsum veroeros</a></li>
+						<li><a href="./front/generic.html">Tempus etiam</a></li>
+						<li><a href="./front/generic.html">Consequat dolor</a></li>
+						<li><a href="./front/elements.html">Elements</a></li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+						<header>
+							<h1>Notre Boutique.</h1>
+							<p>Bienvenue dans notre boutique en ligne dédiée aux passionnés de mixologie 
+								et aux professionnels du bar ! Nous sommes fiers de vous offrir une gamme complète 
+								d'équipements de haute qualité, conçus spécialement pour vous aider à créer des cocktails 
+								exceptionnels et à impressionner vos convives.</p>
+
+							<p>Que vous soyez un barman expérimenté à la recherche d'outils de pointe ou simplement un amateur 
+								souhaitant explorer l'art de la mixologie, vous trouverez ici tout ce dont vous avez besoin pour 
+								libérer votre créativité et transformer votre bar en un véritable temple de saveurs.</p>
+
+							<p>Nous avons soigneusement sélectionné chaque produit pour vous offrir des articles de renommée mondiale, 
+								fabriqués par des marques réputées dans l'industrie de la mixologie. Des shakers élégants et fonctionnels 
+								aux cuillères de bar précises, en passant par les verres à cocktail raffinés et les accessoires 
+								indispensables, notre boutique regorge de trésors pour combler tous les besoins de votre art.</p>
+						</header>
+						<section class="tiles">
+						<?php foreach ($results as $row) : ?>
+						<article class="">
+							<span class="image">
+								<img src="./front/images/Ustensiles/Ustensiles<?= $row['imageID'] ?>.png" alt="" />
+							</span>
+							<a href="">
+								<h2><?= $row['Libelle'] ?></h2>
+								<div class="content">
+									<p><?= $row['Description'] ?></p>
+									<p><?= $row['Prix'] ?> €</p>
+								</div>
+							</a>
+						</article>
+						<?php endforeach; ?>
+						<?php else : ?>
+						Aucun résultat trouvé.
+						<?php endif;?>
+						</section>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>Get in touch</h2>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field half">
+										<input type="text" name="name" id="name" placeholder="Name" />
 									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" /></li>
-									</ul>
-								</form>
-							</section>
-							<section>
-								<h2>Follow</h2>
-								<ul class="icons">
-									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send" class="primary" /></li>
 								</ul>
-							</section>
-							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</form>
+						</section>
+						<section>
+							<h2>Follow</h2>
+							<ul class="icons">
+								<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
-						</div>
-					</footer>
+						</section>
+						<ul class="copyright">
+							<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+				</footer>
 
-			</div>
-	</body>
+		</div>
+</body>
 
 <?php
 $content = ob_get_clean();
