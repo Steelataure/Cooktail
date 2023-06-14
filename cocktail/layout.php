@@ -20,12 +20,6 @@
 <nav class="navbar navbar-expand-lg">
     <div class="navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="navbar-brand" href="index">Accueil</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="shop">Boutique</a>
-            </li>
             <?php if (isset($_SESSION['isLogged'])) { ?>
                 <li class="nav-item">
                     <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>

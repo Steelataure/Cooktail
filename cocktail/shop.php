@@ -27,7 +27,7 @@ if (count($results) > 0) :
 					<div class="inner">
 						<!-- Logo -->
 							<a href="index.html" class="logo">
-								<span class="symbol"><img src="./front/images/logo.svg" alt="" /></span><span class="title">Cooktail</span>
+								<span class="symbol"><img src="./front/images/logo.png" alt="" /></span><span class="title">Cooktail</span>
 							</a>
 					</div>
 				</header>
