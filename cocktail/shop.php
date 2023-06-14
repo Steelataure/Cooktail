@@ -10,7 +10,7 @@ $dbh = include '../config/config.php';
 // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$query = "SELECT *  FROM Shop, Ustensiles WHERE Shop.id = Ustensiles.ShopID;";
+$query = "SELECT *  FROM Shop, Ustensiles, Files WHERE Shop.id = Ustensiles.ShopID AND Ustensiles.imageID = Files.id;";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -55,7 +55,7 @@ if (count($results) > 0) :
 						<?php foreach ($results as $row) : ?>
 						<article class="">
 							<span class="image">
-								<img src="./front/images/Ustensiles/Ustensiles<?= $row['imageID'] ?>.png" alt="" />
+								<img src="..<?= $row['Path'] ?>" alt="" />
 							</span>
 							<a href="./commande?id=<?= $row['UstensileID'] ?>">
 								<h2><?= $row['Libelle'] ?></h2>
