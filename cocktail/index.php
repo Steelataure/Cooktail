@@ -10,12 +10,16 @@ $dbh = include '../config/config.php';
 // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$query = "SELECT Cocktails.*, Cocktails_Ingredients.*
-FROM Cocktails
-JOIN Cocktails_Ingredients ON Cocktails.id = Cocktails_Ingredients.CocktailID;";
+$query = "SELECT *
+FROM Cocktails;";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$query2 = "SELECT *, GROUP_CONCAT(Libelle) as rec
+FROM Cocktails, Cocktails_Ingredients, Ingredients WHERE
+Cocktails.id = Cocktails_Ingredients.CocktailID AND Ingredients.id = Cocktails_Ingredients.IngredientID GROUP BY Cocktails_Ingredients.IngredientID;";
+$stmt2 = $dbh->query($query2);
+$result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 // Affichage des résultats
 if (count($results) > 0) :
@@ -68,9 +72,16 @@ if (count($results) > 0) :
                                     <img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" />
                                 </span>
                                 <a href="">
-                                    <h2><?= $row['Libelle'] ?></h2>
+                                    <h2><?= $row['CocktailLibelle'] ?></h2>
                                     <div class="content">
-                                        <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+										<?php if (count($result) > 0) :
+										?>	
+											<?php foreach ($result as $row) : ?>
+											<p><?= $row['rec'] ?></p>
+											<?php endforeach; ?>
+											<?php else : ?>
+											Aucun résultat trouvé.
+											<?php endif;?>
                                     </div>
                                 </a>
                             </article>
