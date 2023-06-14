@@ -27,7 +27,7 @@ include "../config/inscription.php";
                             <input type="password" class="form-control" id="confirm_password" name="confirm_password"
                                 required>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="inscription">Inscription</button>
+                        <button type="submit" class="primary">Inscription</button>
                         <a class="btn btn-link" href="login.php">Vous avez déjà un compte ? Connectez-vous !</a>
                     </form>
                 </div>

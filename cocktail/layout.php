@@ -50,11 +50,8 @@
     <nav id="menu">
       <h2>Menu</h2>
       <ul>
-        <li><a href="#">Home</a></li>
         <li><a href="index">Accueil</a></li>
         <li><a href="shop">Boutique</a></li>
-        <li><a href="./front/generic.html"></a></li>
-        <li><a href="./front/elements.html"></a></li>
       </ul>
     </nav>
 

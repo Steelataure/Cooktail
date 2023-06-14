@@ -23,7 +23,7 @@ if (isset($_SESSION['isLogged'])) {
                             <label for="password">Mot de passe</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="connexion">Connexion</button>
+                        <button type="submit" class="primary" name="connexion">Connexion</button>
                         <a class="btn btn-link" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
                             !</a>
                     </form>
