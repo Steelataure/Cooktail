@@ -72,6 +72,7 @@ if (count($results) > 0) :
             </div>
         </div>
     </div>
+    <?php endif ?>
 
 <script>
 </script>
