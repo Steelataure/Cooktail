@@ -48,7 +48,7 @@ if (count($results) > 0) :
 						<?php foreach ($results as $row) : ?>
 						<article class="">
 							<span class="image shadowCook2">
-								<img src="..<?= $row['Path'] ?>" alt="" />
+								<img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" />
 							</span>
 							<a href="./commande?id=<?= $row['UstensileID'] ?>">
 								<h2><?= $row['Libelle'] ?></h2>

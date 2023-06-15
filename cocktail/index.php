@@ -11,15 +11,16 @@ $dbh = include '../config/config.php';
 
 
 $query = "SELECT *
-FROM Cocktails;";
+FROM Cocktails, Files WHERE Cocktails.ImageID=Files.id";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$query2 = "SELECT *, GROUP_CONCAT(Libelle) as rec
-FROM Cocktails, Cocktails_Ingredients, Ingredients WHERE
-Cocktails.id = Cocktails_Ingredients.CocktailID AND Ingredients.id = Cocktails_Ingredients.IngredientID GROUP BY Cocktails_Ingredients.IngredientID;";
-$stmt2 = $dbh->query($query2);
-$result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+// $query2 = "SELECT quantite as q, Libelle as l
+// FROM Cocktails_Ingredients
+// INNER JOIN Cocktails ON Cocktails.id=Cocktails_Ingredients.CocktailID
+// INNER JOIN Ingredients ON Ingredients.id=Cocktails_Ingredients.IngredientID" ;
+// $stmt2 = $dbh->query($query2);
+// $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 $rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
 $rootDir = basename(dirname($rootDir));
@@ -66,7 +67,6 @@ if (count($results) > 0) :
 								<p>bla bla bla.</p>
 							</header>
 							<section class="tiles">
-							
                             
                             <?php 
 							foreach ($results as $key => $row):
@@ -75,22 +75,16 @@ if (count($results) > 0) :
                             <article class="">
                                 <span class="image shadowCook2">
 								<div class="d-flex align-items-center position-relative ">
-										<img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" class="img-fluid" />
+										<img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
 										<!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
 								</div>
 
                                 </span>
-                                <a href="#">
+								<a href="./fiche_recette?id=<?= $row['id'] ?>">
                                     <h2><?= $row['CocktailLibelle'] ?></h2>
                                     <div class="content">
-										<?php if (count($result) > 0) :
-										?>	
-											<?php foreach ($result as $row) : ?>
-											<span><?= $row['rec'] ?>,</span>
-											<?php endforeach; ?>
-											<?php else : ?>
-											Aucun résultat trouvé.
-											<?php endif;?>
+											<span>- <?= $row['Description'] ?></span>
+											<br></br>
                                     </div>
                                 </a>
                             </article>
