@@ -22,15 +22,6 @@ if (count($results) > 0) :
 	<!-- Wrapper -->
 		<div id="wrapper">
 
-			<!-- Header -->
-				<header id="header">
-					<div class="inner">
-						<!-- Logo -->
-							<a href="index" class="logo">
-								<span class="symbol"><img src="./front/images/logo.png" alt="" /></span><span class="title">Cooktail</span>
-							</a>
-					</div>
-				</header>
 
 			<!-- Main -->
 				<div id="main">
@@ -54,7 +45,7 @@ if (count($results) > 0) :
 						<section class="tiles">
 						<?php foreach ($results as $row) : ?>
 						<article class="">
-							<span class="image">
+							<span class="image shadowCook2">
 								<img src="..<?= $row['Path'] ?>" alt="" />
 							</span>
 							<a href="./commande?id=<?= $row['UstensileID'] ?>">

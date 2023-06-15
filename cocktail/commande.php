@@ -67,7 +67,7 @@ $totalAmount = $price * $quantity;
     <div class="container">
         <div class="order-form">
             <div class="card">
-                <img class="card-img-top " src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
+                <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $title; ?></h5>
                     <!-- <p class="card-text"><?php echo $description; ?></p> -->

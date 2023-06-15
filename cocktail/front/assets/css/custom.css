@@ -1,8 +1,116 @@
 /* CUSTOM CSS */
 
-.navbar-collapse {
+body::-webkit-scrollbar {
+    display: none;
+  }
 
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+/* loader boisson a louverture de la page */
+/* vague background */
+/* icone numero delement dans le panier en cours si connecté */
+
+.navbar-nav {
+    -ms-flex-direction: initial !important;
 }
 
 
-/* FIN CUSTOM CSS */
+h1 {
+    color: #d7d7ff !important;
+}
+
+.shadowCook {
+    border:1px solid #c3c3ff !important;
+    box-shadow: #8377b97a 2px 2px 15px !important;
+}
+
+.shadowCook2 {
+    border:1px solid #c3c3ff !important;
+    border-radius: 1.1em !important;
+    box-shadow: #8377b97a 0px 0px 25px !important;
+}
+
+
+.shadowCookTxt {
+    text-shadow: #8377b97a 0px 2px 10px !important;
+}
+
+.espaceB {
+    margin-bottom:5em;
+}
+.card {
+    border-radius:2rem !important;
+    /* background-color: #8585ad !important; */
+    background-color: #252530 ;
+    /* color: #efefff; */
+    /* max-height: 700px !important; */
+    /* overflow: scroll; */
+}
+
+.card label {
+    margin-bottom: 0px;
+}
+
+.card::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card::-webkit-scrollbar {
+    display: none;
+  }
+  
+
+.btnConnexion {
+    margin-top:1em;
+    margin-bottom:1em;
+    margin-left: 30%;
+}
+
+.titreLogo {
+    margin-left:2em;
+    font-size: 2em;
+}
+
+.iconeMenu {
+    top: 30%;
+    position: absolute;
+    right: 0;
+    text-decoration: none !important;
+    list-style-type: none !important;
+}
+
+.iconeMenu li {
+    padding-left:0px;
+}
+
+.userBar {
+    font-size: 1.3em;
+    border-bottom: none !important;
+
+}
+
+@media (max-width: 767.98px) {
+
+    .titreLogo {
+        margin-left: 2em;
+        font-size: 1em;
+    }
+
+    .iconeCoock {
+        /* font-size: 3em; */
+    }
+
+    .title {
+        display: none !important;
+    }
+
+
+    
+  }

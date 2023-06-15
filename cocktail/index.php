@@ -31,17 +31,6 @@ if (count($results) > 0) :
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-							<!-- Logo -->
-								<a href="index" class="logo">
-									<span class="symbol"><i class="fas fa-cocktail" style="font-size "></i></span><span class="title">Cooktail</span>
-								</a>
-
-						</div>
-					</header>
-
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
@@ -57,8 +46,8 @@ if (count($results) > 0) :
 							?>
                             
                             <article class="">
-                                <span class="image">
-								<div class="d-flex align-items-center position-relative">
+                                <span class="image shadowCook2">
+								<div class="d-flex align-items-center position-relative ">
 										<img src="./front/images/pic0<?= $row['ImageID'] ?>.jpg" alt="" class="img-fluid" />
 										<!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
 								</div>
@@ -70,7 +59,7 @@ if (count($results) > 0) :
 										<?php if (count($result) > 0) :
 										?>	
 											<?php foreach ($result as $row) : ?>
-											<p><?= $row['rec'] ?></p>
+											<span><?= $row['rec'] ?>,</span>
 											<?php endforeach; ?>
 											<?php else : ?>
 											Aucun résultat trouvé.
@@ -104,7 +93,7 @@ if (count($results) > 0) :
 					<footer id="footer">
 						<div class="inner">
 							<section>
-								<h2>Get in touch</h2>
+								<h2 class="shadowCookTxt">CONTACT</h2>
 								<form method="post" action="#">
 									<div class="fields">
 										<div class="field half">
@@ -123,20 +112,17 @@ if (count($results) > 0) :
 								</form>
 							</section>
 							<section>
-								<h2>Follow</h2>
+								<h2 class="shadowCookTxt">Réseaux</h2>
 								<ul class="icons">
-									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-twitter shadowCookTxt"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f shadowCookTxt"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram shadowCookTxt"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone shadowCookTxt"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope shadowCookTxt"><span class="label">Email</span></a></li>
 								</ul>
 							</section>
 							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Projet Etudiant</li><li><a href=""> Paris</a></li>
 							</ul>
 						</div>
 					</footer>
