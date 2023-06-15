@@ -1,8 +1,4 @@
 /* CUSTOM CSS */
-/* loader boisson a louverture de la page */
-/* vague background */
-/* icone numero delement dans le panier en cours si connecté */
-
 
 body::-webkit-scrollbar {
     display: none;
@@ -17,6 +13,9 @@ body::-webkit-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+/* loader boisson a louverture de la page */
+/* vague background */
+/* icone numero delement dans le panier en cours si connecté */
 
 .navbar-nav {
     -ms-flex-direction: initial !important;

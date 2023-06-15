@@ -14,6 +14,8 @@ $query = "SELECT *  FROM Shop, Ustensiles, Files WHERE Shop.id = Ustensiles.Shop
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+
 // Affichage des résultats
 if (count($results) > 0) :
 ?>
