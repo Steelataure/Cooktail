@@ -34,6 +34,33 @@ if (count($results) > 0) :
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
+
+
+						
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Modal
+  </button>
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content modalTop" >
+        <div class="modal-header">
+          <h2 class="modal-title">Modal Heading</h2>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
 							<header>
 								<h1>Nos Recettes phares.</h1>
 								<p>bla bla bla.</p>
