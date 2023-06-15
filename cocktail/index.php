@@ -38,7 +38,7 @@ if (count($results) > 0) :
 
 
 						
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     Modal
   </button>
 
@@ -60,7 +60,7 @@ if (count($results) > 0) :
         
       </div>
     </div>
-  </div>
+  </div> -->
 
 							<header>
 								<h1>Nos Recettes phares.</h1>
