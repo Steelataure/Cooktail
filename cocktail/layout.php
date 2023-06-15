@@ -58,9 +58,9 @@
                                 <a class="nav-link userBar" href="#menu"><i class="fas fa-bars shadowCookTxt "></i></a>
                             </li>
             </div>
-            <nav class="navbar navbar-expand-lg">
+            <!-- <nav class="navbar navbar-expand-lg">
                 <div class="navbar-collapse">
-                    <ul class="navbar-nav mr-auto" style="-ms-flex-direction: initial !important;">
+                    <ul class="navbar-nav mr-auto" style="-ms-flex-direction: initial !important;"> -->
                         <?php if (isset($_SESSION['isLogged'])) { ?>
                             <li class="nav-item">
                                 <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
@@ -71,9 +71,9 @@
                         <?php } else { ?>
                            
                         <?php } ?>
-                    </ul>
+                    <!-- </ul>
                 </div>
-            </nav>
+            </nav> -->
         </div>
 
     </header>
