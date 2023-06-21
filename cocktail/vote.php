@@ -14,8 +14,11 @@ if (isset($_POST['cocktailID']) && isset($_POST['voteType'])) {
         exit;
     }
 
+    // Récupère l'ID de l'utilisateur connecté
+    $userID = $_SESSION['userID'];
+
     // Vérifie si l'utilisateur a déjà voté pour ce cocktail
-    $voteCookieName = 'vote_' . $cocktailID;
+    $voteCookieName = 'vote_' . $cocktailID . '_' . $userID;
 
     if (!isset($_COOKIE[$voteCookieName])) {
         // Si l'utilisateur n'a pas encore voté, enregistre le vote
@@ -41,9 +44,10 @@ if (isset($_POST['cocktailID']) && isset($_POST['voteType'])) {
     }
 }
 
-$query = "SELECT Cocktails.*, Files.Path
+$query = "SELECT Cocktails.*, Files.Path, user.username AS createur
 FROM Cocktails
-INNER JOIN Files ON Cocktails.ImageID = Files.id 
+INNER JOIN Files ON Cocktails.ImageID = Files.id
+INNER JOIN user ON Cocktails.CreateurID = user.id
 WHERE Cocktails.IsClassic = 0";
 
 $stmt = $dbh->query($query);
@@ -51,131 +55,74 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Affichage des résultats
 if (count($results) > 0) :
-    ?>
-    <!-- Wrapper -->
-    <div id="wrapper">
-        <!-- Main -->
-        <div id="main">
-            <div class="inner">
-                <header>
-                    <h1>Partagez vos cocktails</h1>
-                    <p>Votez pour vos cocktails préférés et découvrez les recettes partagées par la communauté.</p>
-                </header>
-                <!-- ... Autres éléments HTML ... -->
 
-<!-- ... Autres éléments HTML ... -->
 
-<section class="tiles">
-    <?php foreach ($results as $row) : ?>
-        <article>
-            <span class="image">
-                <img src="..<?= $row['Path'] ?>" class="img-fluid" />
-            </span>
-            <a href="#">
-                <h2><?= $row['CocktailLibelle'] ?></h2>
-                <div class="content">
-                    <!-- <p><?= $row['Description'] ?></p> -->
-                    <p>
-                        Nombre de votes :
-                        <span class="vote-count">
+?>
+<div id="wrapper">
+    <div id="main">
+        <div class="inner">
+            <header>
+                <h1>Partagez vos cocktails</h1>
+                <p>Votez pour vos cocktails préférés et découvrez les recettes partagées par la communauté.</p>
+            </header>
+            <section class="tiles">
+                <?php foreach ($results as $row) : ?>
+                <article>
+                    <span class="image">
+                        <img src="..<?= $row['Path'] ?>" class="img-fluid" />
+                    </span>
+                    <a href="#">
+                        <h2><?= $row['CocktailLibelle'] ?></h2>
+                        <div class="content">
+                            <?= $row['Description'] ?>
                             <p>
-                                Likes: <span class="upvotes"><?= number_format($row['Upvotes']) ?></span> <br>
-                                Dislikes: <span class="downvotes"><?= number_format($row['Downvotes']) ?></span>
+                                Nombre de votes :
+                                <span class="vote-count">
+                                    <p>
+                                        Likes: <span class="upvotes"><?= number_format($row['Upvotes']) ?></span> <br>
+                                        Dislikes: <span class="downvotes"><?= number_format($row['Downvotes']) ?></span>
+                                    </p>
+                                </span>
                             </p>
-                        </span>
-                    </p>
-                </div>
-            </a>
-            </article>
-            <?php if (isset($_SESSION['isLogged'])) : ?>
-                <div class="vote-buttons">
-                    <button class="vote-button like" data-cocktail-id="<?= $row['id'] ?>">Like</button>
-                    <button class="vote-button dislike" data-cocktail-id="<?= $row['id'] ?>">Dislike</button>
-                </div>
-            <?php else : ?>
-                <button disabled>Voter (Connectez-vous)</button>
-            <?php endif; ?>
-            <?php if (isset($errorMessage)) : ?>
-                <div class="error-message"><?= $errorMessage ?></div>
-            <?php endif; ?>
+                            <?php if (isset($_SESSION['isLogged'])) : ?>
+                            <div class="vote-buttons">
+                                <form action="vote.php" method="POST">
+                                    <input type="hidden" name="cocktailID" value="<?= $row['id'] ?>">
+                                    <button class="vote-button like" name="voteType" value="like">Like</button>
+                                    <button class="vote-button dislike" name="voteType" value="dislike">Dislike</button>
+                                </form>
+                            </div>
+                            <?php else : ?>
+                            <button disabled>Voter (Connectez-vous)</button>
+                            <?php endif; ?>
+                            <?php if (isset($errorMessage)) : ?>
+                            <div class="error-message"><?= $errorMessage ?></div>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </article>
+                <?php endforeach; ?>
+            </section>
 
-    <?php endforeach; ?>
-</section>
+            <style>
+                .vote-buttons {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 10px;
+                }
 
-<style>
-    .vote-buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    .vote-buttons button {
-        margin: 0 5px;
-    }
-</style>
-
-<!-- ... Autres éléments HTML ... -->
-
-
-<style>
-    .vote-buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    .vote-buttons button {
-        margin: 0 5px;
-    }
-</style>
-
-<!-- ... Autres éléments HTML ... -->
-
-            </div>
+                .vote-buttons button {
+                    margin: 0 5px;
+                }
+            </style>
+            
         </div>
     </div>
+</div>
+</body>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../public/js/vote.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.vote-button').click(function() {
-                var cocktailID = $(this).data('cocktail-id');
-                var voteType = $(this).hasClass('like') ? 'like' : 'dislike';
-
-                $.ajax({
-                    url: 'vote.php',
-                    method: 'POST',
-                    dataType: 'json',
-                    data: {
-                        cocktailID: cocktailID,
-                        voteType: voteType
-                    },
-                    success: function(response) {
-                        // Mettre à jour l'affichage du nombre de votes
-                        $('.upvotes').text(response.upvotes.toLocaleString());
-                        $('.downvotes').text(response.downvotes.toLocaleString());
-
-                        // Désactiver les boutons de vote
-                        $('.vote-button').attr('disabled', 'disabled');
-
-                        // Afficher le message d'erreur s'il existe
-                        if (response.error) {
-                            $('.error-message').text(response.error);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            });
-        });
-    </script>
-    </body>
-
-    </html>
+</html>
 <?php endif;
 $content = ob_get_clean();
 include 'layout.php';
