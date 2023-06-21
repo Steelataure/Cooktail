@@ -13,26 +13,34 @@ if (!isset($_GET['id'])) {
 // Récupération de l'ID de l'article depuis le paramètre GET
 $CocktailId = $_GET['id'];
 
-//Récupération du cocktail depuis la base de données
+// Récupération du cocktail depuis la base de données
 $sql = "SELECT *
-FROM Cocktails_Ingredients, Cocktails, Ingredients, Files WHERE
-Cocktails.id=Cocktails_Ingredients.CocktailID AND
-Ingredients.id=Cocktails_Ingredients.IngredientID AND Cocktails_Ingredients.CocktailID = :id AND Cocktails.ImageID = Files.id" ;
+        FROM Cocktails_Ingredients, Cocktails, Ingredients, Files
+        WHERE Cocktails.id = Cocktails_Ingredients.CocktailID
+        AND Ingredients.id = Cocktails_Ingredients.IngredientID
+        AND Cocktails_Ingredients.CocktailID = :id
+        AND Cocktails.ImageID = Files.id";
 $query = $dbh->prepare($sql);
 $query->bindParam(":id", $CocktailId, PDO::PARAM_INT);
 $query->execute();
-$item = $query->fetch(PDO::FETCH_ASSOC);
+$item = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$title = $item['CocktailLibelle'];
-//$description = $item['Description'];
-$imagePath = $item['Path'];
+// Vérification si l'article existe
+if (count($item) == 0) {
+    echo "Cocktail non trouvé.";
+    exit();
+}
+
+$title = $item[0]['CocktailLibelle'];
+$imagePath = $item[0]['Path'];
 
 $rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
 $rootDir = basename(dirname($rootDir));
+$quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
 
-
-//Affichage des résultats
-if (count($results) > 0) :
+$pricePerItem = 10; //A CHANGER
+$totalAmount = $quantity * $pricePerItem;
+// Affichage des résultats
 ?>
 
 <title>Formulaire de commande</title>
@@ -53,28 +61,27 @@ if (count($results) > 0) :
     }
 </style>
 
-    <div class="container">
-        <div class="order-form">
-            <div class="card">
-                <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $title; ?></h5>
-                    <!-- <p class="card-text"><?php echo $description; ?></p> -->
-                    <form id="order-form" method="POST">
-                        <div class="form-group">
-                            <label for="quantity">Quantité :</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="<?php echo $quantity; ?>">
-                        </div>
-                        <h5 class="total-amount">Total : $<?php echo $totalAmount; ?></h5>
-                        <button type="submit" class="primary">Passer la commande</button>
-                    </form>
-                </div>
+<div class="container">
+    <div class="order-form">
+        <div class="card">
+            <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $title; ?></h5>
+                <form id="order-form" method="POST">
+                    <div class="form-group">
+                        <label for="quantity">Quantité :</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="<?php echo $quantity; ?>">
+                    </div>
+                    <h5 class="total-amount">Total : $<?php echo $totalAmount; ?></h5>
+                    <button type="submit" class="primary">Passer la commande</button>
+                </form>
             </div>
         </div>
     </div>
-    <?php endif ?>
+</div>
 
 <script>
+    // ... Votre code JavaScript ici ...
 </script>
 
 <?php
