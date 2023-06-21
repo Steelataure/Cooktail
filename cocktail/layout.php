@@ -87,6 +87,8 @@
         <li><a href="index"><i class="mr-4 fas fa-home"></i>Accueil</a></li>
         <li><a href="shop"><i class="mr-4 fas fa-shopping-cart"></i>Boutique</a></li>
         <li><a href="vote"><i class="mr-4 fas fa-shopping-cart"></i>Communauté</a></li>
+        <li><a href="create"><i class="mr-4 fas fa-shopping-cart"></i>Créer ton cocktail</a></li>
+
 
       </ul>
 

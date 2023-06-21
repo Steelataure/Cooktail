@@ -77,7 +77,7 @@ $rootDir = basename(dirname($rootDir));
             <?php
             $i = 1;
             while ($i < $etape) {
-                echo '<p>Etape <?php echo $i>'
+                echo '<p>Etape <?php echo $i>';
             }
             <p>Etape 1 : <?= $item[0]['Etape1'] ?></p>
             <p>Etape 2 : <?= $item[0]['Etape2'] ?></p>
