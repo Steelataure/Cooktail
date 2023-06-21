@@ -73,7 +73,6 @@ $totalAmount = $quantity * $pricePerItem;
                         <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="<?php echo $quantity; ?>">
                     </div>
                     <h5 class="total-amount">Total : $<?php echo $totalAmount; ?></h5>
-                    <button type="submit" class="primary">Passer la commande</button>
                 </form>
             </div>
         </div>

@@ -43,7 +43,8 @@ if (isset($_POST['cocktailID']) && isset($_POST['voteType'])) {
 
 $query = "SELECT Cocktails.*, Files.Path
 FROM Cocktails
-INNER JOIN Files ON Cocktails.ImageID = Files.id";
+INNER JOIN Files ON Cocktails.ImageID = Files.id 
+WHERE Cocktails.IsClassic = 0";
 
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
