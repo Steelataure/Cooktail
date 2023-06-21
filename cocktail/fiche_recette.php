@@ -26,6 +26,34 @@ $query->bindParam(":id", $CocktailId, PDO::PARAM_INT);
 $query->execute();
 $item = $query->fetchAll(PDO::FETCH_ASSOC);
 
+$sql2 = "SELECT *
+        FROM Cocktails, Ustensiles, Cocktails_Ustensiles, Files
+        WHERE Cocktails.id = Cocktails_Ustensiles.CocktailsID
+        AND CocktailsID = :id
+        AND Ustensiles.Ustensileid = Cocktails_Ustensiles.UstensilesID
+        AND Ustensiles.ImageID = Files.id";
+$query2 = $dbh->prepare($sql2);
+$query2->bindParam(":id", $CocktailId, PDO::PARAM_INT);
+$query2->execute();
+$item2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+
+$sql3 = "SELECT *
+        FROM Cocktails, Ingredients, Cocktails_Ingredients, Files
+        WHERE Cocktails.id = Cocktails_Ingredients.CocktailID
+        AND CocktailID = :id
+        AND Ingredients.ID = Cocktails_Ingredients.Ingredientid
+        AND Ingredients.ImageID = Files.id";
+$query3 = $dbh->prepare($sql3);
+$query3->bindParam(":id", $CocktailId, PDO::PARAM_INT);
+$query3->execute();
+$item3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+// $sql2 = "SELECT *
+//          FROM Ustensiles, Cocktails, Cocktails_Ustensiles
+//          WHERE "
+// $query = $dbh->prepare($sql);
+// $query->bindParam(":id", $CocktailId, PDO::PARAM_INT);
+// $query->execute();
+// $item = $query->fetchAll(PDO::FETCH_ASSOC);
 // Vérification si l'article existe
 if (count($item) == 0) {
     echo "Cocktail non trouvé.";
@@ -65,6 +93,10 @@ $rootDir = basename(dirname($rootDir));
         text-align: center;
     }
 
+    h3 {
+        text-align: center;
+    }
+
 </style>
 
 <div class="container">
@@ -74,11 +106,6 @@ $rootDir = basename(dirname($rootDir));
             <div class="card-body">
                 <h5 class="card-title"><?php echo $title; ?></h5>
             </div>
-            <?php
-            $i = 1;
-            while ($i < $etape) {
-                echo '<p>Etape <?php echo $i>';
-            }
             <p>Etape 1 : <?= $item[0]['Etape1'] ?></p>
             <p>Etape 2 : <?= $item[0]['Etape2'] ?></p>
             <p>Etape 3 : <?= $item[0]['Etape3'] ?></p>
@@ -91,7 +118,28 @@ $rootDir = basename(dirname($rootDir));
             <p>Etape 10 : <?= $item[0]['Etape10'] ?></p>
             <p>Etape 11 : <?= $item[0]['Etape11'] ?></p>
             <p>Etape 12 : <?= $item[0]['Etape12'] ?></p>
+            <h3>Ustensiles :</h3>
+           <?php 
+            foreach ($item2 as $row):
             ?>
+                <span class="image shadowCook2">
+                <div class="d-flex align-items-center position-relative ">
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
+                        <!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
+                </div>
+                </span>
+            <?php endforeach; ?>
+            <h3>Ingredients :</h3>
+            <?php 
+            foreach ($item3 as $row):
+            ?>
+                <span class="image shadowCook2">
+                <div class="d-flex align-items-center position-relative ">
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
+                        <!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
+                </div>
+                </span>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
