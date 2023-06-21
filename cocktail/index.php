@@ -10,7 +10,7 @@ $dbh = include '../config/config.php';
 // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$query = "SELECT *
+$query = "SELECT *, Cocktails.id as cocktail
 FROM Cocktails, Files WHERE Cocktails.ImageID=Files.id";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,7 +80,7 @@ if (count($results) > 0) :
 								</div>
 
                                 </span>
-								<a href="./fiche_recette?id=<?= $row['id'] ?>">
+								<a href="./fiche_recette?id=<?= $row['cocktail'] ?>">
                                     <h2><?= $row['CocktailLibelle'] ?></h2>
                                     <div class="content">
 											<span>- <?= $row['Description'] ?></span>
