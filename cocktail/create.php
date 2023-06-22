@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
     $nomCocktail = $_POST['nomCocktail'];
     $description = $_POST['description'];
+    $isClassic = isset($_POST['isClassic']) ? 1 : 0; // Vérifier si la case à cocher est cochée
 
     // Vérifier si un fichier a été uploadé
     if (isset($_FILES['image_cocktail']) && $_FILES['image_cocktail']['error'] === UPLOAD_ERR_OK) {
@@ -31,12 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageID = $dbh->lastInsertId();
 
             // Insérer les données du cocktail dans la table Cocktails
-            $queryCocktails = "INSERT INTO Cocktails (CocktailLibelle, Description, CreateurID, ImageID, IsClassic) VALUES (:nomCocktail, :description, :createurID, :imageID, 0)";
+            $queryCocktails = "INSERT INTO Cocktails (CocktailLibelle, Description, CreateurID, ImageID, IsClassic) VALUES (:nomCocktail, :description, :createurID, :imageID, :isClassic)";
             $stmtCocktails = $dbh->prepare($queryCocktails);
             $stmtCocktails->bindParam(':nomCocktail', $nomCocktail, PDO::PARAM_STR);
             $stmtCocktails->bindParam(':description', $description, PDO::PARAM_STR);
             $stmtCocktails->bindParam(':createurID', $_SESSION['userID'], PDO::PARAM_INT);
             $stmtCocktails->bindParam(':imageID', $imageID, PDO::PARAM_INT);
+            $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
             $stmtCocktails->execute();
 
             echo "Le cocktail a été ajouté avec succès.";
@@ -47,8 +49,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Veuillez sélectionner une image pour le cocktail.";
     }
 }
-?>
 
+// Vérifier si l'utilisateur connecté est un administrateur
+$isUserAdmin = false;
+if (isset($_SESSION['userID'])) {
+    $userID = $_SESSION['userID'];
+    $queryUser = "SELECT IsAdmin FROM user WHERE id = :userID";
+    $stmtUser = $dbh->prepare($queryUser);
+    $stmtUser->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmtUser->execute();
+    $userData = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+    if ($userData && $userData['IsAdmin'] == 1) {
+        $isUserAdmin = true;
+    }
+}
+?>
 <form method="POST" enctype="multipart/form-data">
     <div class="container">
         <div class="row justify-content-center">
@@ -61,21 +77,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="nomCocktail">Nom du cocktail</label>
                             <input type="text" class="form-control" id="nomCocktail" name="nomCocktail" required>
                         </div>
+
                         <div class="form-group">
                             <label for="description">Description du cocktail</label>
-                            <textarea class="form-control" id="description" name="description" rows="6" required></textarea>
                         </div>
-                        <div class="form-group">
+                        <textarea class="form-control" id="description" name="description" rows="6" required></textarea>
+
+                        <div class="form-group my-4">
                             <label for="image">Image du cocktail</label>
-                            <input type="file" class="form-control-file" id="image" name="image_cocktail" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                        <input type="file" class="form-control-file mx-5 mb-5" id="image" name="image_cocktail" required>
+
+                        <?php if ($isUserAdmin) : ?>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isClassic" name="isClassic">
+                                    <label class="form-check-label" for="isClassic">Cocktail classique</label>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <button type="submit" id="submit_create" class="btn btn-primary" name="ajouter">Ajouter</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+
 
 <?php
 $content = ob_get_clean();
