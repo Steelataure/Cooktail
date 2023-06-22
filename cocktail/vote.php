@@ -58,7 +58,7 @@ $query = "SELECT Cocktails.*, Files.Path, user.username AS createur
 FROM Cocktails
 INNER JOIN Files ON Cocktails.ImageID = Files.id
 INNER JOIN user ON Cocktails.CreateurID = user.id
-WHERE Cocktails.IsClassic = 0";
+WHERE Cocktails.IsClassic = 0 AND Cocktails.Actif = 1";
 
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

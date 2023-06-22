@@ -3,30 +3,17 @@ ob_start();
 session_start();
 
 $dbh = include '../config/config.php';
-
-// Exemple de requête de sélection pour récupérer des données de la base de données
-// $query = "SELECT * FROM Cocktails AND Cocktails_Ingredients";
-// $stmt = $dbh->query($query);
-// $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 $query = "SELECT *, Cocktails.id as cocktail
 FROM Cocktails
 JOIN Files ON Cocktails.ImageID=Files.id 
-WHERE Cocktails.IsClassic = 1";
+WHERE Cocktails.IsClassic = 1 AND Cocktails.Actif = 1";
 
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// $query2 = "SELECT quantite as q, Libelle as l
-// FROM Cocktails_Ingredients
-// INNER JOIN Cocktails ON Cocktails.id=Cocktails_Ingredients.CocktailID
-// INNER JOIN Ingredients ON Ingredients.id=Cocktails_Ingredients.IngredientID" ;
-// $stmt2 = $dbh->query($query2);
-// $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
 $rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
 $rootDir = basename(dirname($rootDir));
+
 // Affichage des résultats
 if (count($results) > 0) :
 ?>
@@ -38,82 +25,32 @@ if (count($results) > 0) :
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
-
-						
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Modal
-  </button>
-
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content modalTop" >
-        <div class="modal-header">
-          <h2 class="modal-title">Modal Heading</h2>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-          Modal body..
-        </div>
-        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div> -->
-
 							<header>
 								<h1>Nos Recettes phares.</h1>
 								<p>bla bla bla.</p>
 							</header>
 							<section class="tiles">
-                            
-                            <?php 
-							foreach ($results as $key => $row):
-							?>
-                            
-                            <article class="">
-                                <span class="image shadowCook2">
-								<div class="d-flex align-items-center position-relative ">
-										<img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
-										<!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
-								</div>
-
-                                </span>
-								<a href="./fiche_recette?id=<?= $row['cocktail'] ?>">
-                                    <h2><?= $row['CocktailLibelle'] ?></h2>
-                                    <div class="content">
-											<span>- <?= $row['Description'] ?></span>
-											<br></br>
-                                    </div>
-                                </a>
-                            </article>
-                            <?php endforeach; ?>
-                            <?php else : ?>
-                            Aucun résultat trouvé.
-                            <?php endif;?>
-
-                            
-								<!-- <article class="style1">
-									<span class="image">
-										<img src="./front/images/pic01.jpg" alt="" />
-									</span>
-									<a href="">
-										<h2>Magna</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article> -->
-
+								<?php foreach ($results as $key => $row): ?>
+									<article class="">
+										<span class="image shadowCook2">
+											<div class="d-flex align-items-center position-relative ">
+												<img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
+											</div>
+										</span>
+										<a href="./fiche_recette?id=<?= $row['cocktail'] ?>">
+											<h2><?= $row['CocktailLibelle'] ?></h2>
+											<div class="content">
+												<span>- <?= $row['Description'] ?></span>
+												<br></br>
+											</div>
+										</a>
+									</article>
+								<?php endforeach; ?>
 							</section>
 						</div>
 					</div>
-
-				<!-- Footer -->
+					<?php endif; ?>
+					<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
 							<section>
@@ -151,8 +88,8 @@ if (count($results) > 0) :
 						</div>
 					</footer>
 
-			</div>
-	</body>
+				</div>
+			</body>
 
 <?php
 $content = ob_get_clean();
