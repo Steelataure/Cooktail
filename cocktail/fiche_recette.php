@@ -15,11 +15,11 @@ $CocktailId = $_GET['id'];
 
 // Récupération du cocktail depuis la base de données
 $sql = "SELECT *
-        FROM Cocktails_Ingredients, Cocktails, Ingredients, Ustensiles, Recettes, Files
+        FROM Cocktails_Ingredients, Cocktails, Ingredients, Ustensiles, Cocktails_Recette, Files
         WHERE Cocktails.id = Cocktails_Ingredients.CocktailID
         AND Ingredients.id = Cocktails_Ingredients.IngredientID
         AND Cocktails_Ingredients.CocktailID = :id
-        AND Cocktails.RecetteID = Recettes.RecetteID
+        AND Cocktails.id = Cocktails_Recette.CocktailID
         AND Cocktails.ImageID = Files.id";
 $query = $dbh->prepare($sql);
 $query->bindParam(":id", $CocktailId, PDO::PARAM_INT);
@@ -29,7 +29,7 @@ $item = $query->fetchAll(PDO::FETCH_ASSOC);
 $sql2 = "SELECT *
         FROM Cocktails, Cocktails_Recette
         WHERE Cocktails.id = :id
-        AND Cocktails.RecetteID = Cocktails_Recette.CocktailID
+        AND Cocktails.id = Cocktails_Recette.CocktailID
         ";
 $query2 = $dbh->prepare($sql2);
 $query2->bindParam(":id", $CocktailId, PDO::PARAM_INT);
