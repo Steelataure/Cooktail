@@ -79,7 +79,7 @@ if (count($results) > 0) :
                     <span class="image">
                         <img src="..<?= $row['Path'] ?>" class="img-fluid" />
                     </span>
-                    <a href="#">
+                    <a href="fiche_recette_community?id=<?= $row['id']?>">
                         <h2><?= $row['CocktailLibelle'] ?></h2>
                         <div class="content">
                             <?= $row['Description'] ?>
