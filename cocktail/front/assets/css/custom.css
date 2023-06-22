@@ -21,9 +21,9 @@ body::-webkit-scrollbar {
     scrollbar-width: none;  /* Firefox */
   }
 
-.navbar-nav {
+/* .navbar-nav {
     -ms-flex-direction: initial !important;
-}
+} */
 
 
 h1 {
@@ -131,6 +131,6 @@ h1 {
     padding-left: 3em;
 }
 
-.titreCocktail {
+/* .titreCocktail {
     background-color: #8377b97a !important;
-}
+} */
