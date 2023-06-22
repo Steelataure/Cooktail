@@ -3330,6 +3330,13 @@ input, select, textarea {
 		margin: 0 auto;
 		padding: 0 2.5em;
 	}
+	/* custom innere */
+	#wrapper > * > .innerMaker {
+		width: 100%;
+		max-width: 90%;
+		margin: 0 auto;
+		padding: 0 2.5em;
+	}
 
 		@media screen and (max-width: 736px) {
 
