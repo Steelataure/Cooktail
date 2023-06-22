@@ -108,7 +108,7 @@
     position: fixed;
     animation: message 5s ease-out;
     left: 80%;
-    top: 10%;
+    top: 17%;
     font-size: 1.8vh;
     background-color: gray;
     color: white;
@@ -131,21 +131,21 @@
 
     25% {
         opacity: 1;
-        top: 10%;
+        top: 17%;
     }
 
     50% {
-        top: 10%;
+        top: 17%;
         opacity: 1;
     }
 
     99% {
-        top: 10%;
+        top: 17%;
         opacity: 1;
     }
 
     100% {
-        top: 10%;
+        top: 17%;
         opacity: 0;
     }
 }
