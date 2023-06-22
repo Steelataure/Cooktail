@@ -1,3 +1,22 @@
+.displayQTT {
+  height: 1em !important;
+  display: none;
+}
+
+.inputQTT {
+  height: 1.5em !important;
+}
+
+.blocIng {
+  height: 600px !important;
+  overflow: scroll;
+}
+
+.blocIng::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* ========================== *\
    Utilities
 \* ========================== */
@@ -90,10 +109,10 @@ label {
   transition: background-color 100ms ease-out, transform 100ms ease-out;
 }
 [type=radio]:checked + label {
-  color: dodgerblue;
+  color: #8a8aff !important;
 }
 [type=radio]:checked + label:after {
-  background-color: dodgerblue;
+  background-color: #8a8aff !important;
   transform: scaleX(1);
 }
 
