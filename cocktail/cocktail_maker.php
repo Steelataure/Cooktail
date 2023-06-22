@@ -9,13 +9,6 @@ $query = "SELECT * FROM Ingredients ORDER BY Libelle";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// $query2 = "INSERT INTO Cocktails(CocktailLibelle, CreateurID, IsClassic, ImageID, Description) 
-// VALUES (CocktailLibelle, CreateurID, 0, Path, Description) "
-
-// foreach ($_POST['checkbox'] as $value) {
-//   $query3 = "INSERT INTO Cocktails_Ingredients(CocktailID, IngredientID, quantite) VALUES ()
-// }
-
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Récupérer les données du formulaire
@@ -65,16 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Vérifier si l'utilisateur connecté est un administrateur
 $isUserAdmin = false;
 if (isset($_SESSION['userID'])) {
-  $userID = $_SESSION['userID'];
-  $queryUser = "SELECT IsAdmin FROM user WHERE id = :userID";
-  $stmtUser = $dbh->prepare($queryUser);
-  $stmtUser->bindParam(':userID', $userID, PDO::PARAM_INT);
-  $stmtUser->execute();
-  $userData = $stmtUser->fetch(PDO::FETCH_ASSOC);
+    $userID = $_SESSION['userID'];
+    $queryUser = "SELECT IsAdmin FROM user WHERE id = :userID";
+    $stmtUser = $dbh->prepare($queryUser);
+    $stmtUser->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmtUser->execute();
+    $userData = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
-  if ($userData && $userData['IsAdmin'] == 1) {
-      $isUserAdmin = true;
-  }
+    if ($userData && $userData['IsAdmin'] == 1) {
+        $isUserAdmin = true;
+    }
 }
 
 ?>
@@ -143,8 +136,7 @@ if (isset($_SESSION['userID'])) {
                                             color: value
                                           };
                                         ingredient.quantite="";
-                                        console.log("OK")
-                                        console.log(drink)
+
                                         drink.push(ingredient);
                                         getDrink();
                                         quantites.addEventListener('change', function(event3) {
@@ -162,19 +154,7 @@ if (isset($_SESSION['userID'])) {
                               </script>
 
                               <?php } ?>
-                              <!-- <script>
-                              function myFunction(id) {
-                                var checkBox = document.getElementById(id);
-                                var text = document.getElementById("display"+id);
-                                if (checkBox.checked == true){
-                                  text.style.display = "inherit";
-                                } else {
-                                  text.style.display = "none";
-                                }
-                                // cocktail();
-                              }
-                              </script> -->
-                                                            
+                                                
                         </form>
                     </div>
                 </div>
@@ -201,7 +181,7 @@ if (isset($_SESSION['userID'])) {
                 <div class="col-4 card loginWave loginWaveInsc shadowCook formMaker">
                     <div class="card-body blocIng">
                         <h1 class="card-title text-center">Informations</h1>
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label for="nomCocktail">Nom du cocktail</label>
@@ -247,8 +227,6 @@ if (isset($_SESSION['userID'])) {
   <script src='https://cdn.jsdelivr.net/npm/zdog'></script>
   <script  src="./front/assets/js/customCocktail.js"></script>
 </body>
-
-
 
 <?php
 $content = ob_get_clean();
