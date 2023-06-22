@@ -95,20 +95,20 @@ if (isset($_SESSION['userID'])) {
 
             
                 <!-- CARD BLOC 1 -->
-                  <div class="col-7 card loginWave loginWaveInsc shadowCook">
+                  <div class="col-4 card loginWave loginWaveInsc shadowCook formMaker">
                     <div class="card-body blocIng">
                         <h1 class="card-title text-center">Ingrédients</h1>
                         <form method="POST">
                               
                               <?php foreach ($results as $row) { ?>
                                 <div class="row">
-                                  <div  class="col-4">
+                                  <div  class="col-5" >
                                   <input type="checkbox" name="myCheckbox<?php echo $row['id']?>" onclick="myFunction(<?php echo $row['id']; ?>)" id="<?php echo $row['id']; ?>" value="<?php echo $row['couleur']; ?>">
                                   <label for="<?php echo $row['id']; ?>"><?php echo $row['Libelle']; ?> 
                                   </div> 
                                   
-                                  <div class="col-8 row displayQTT ml-1" id="display<?php echo $row['id']; ?>">
-                                  <span class="col-4">Quantité :</span>
+                                  <div class="col-7 padd row displayQTT ml-1" id="display<?php echo $row['id']; ?>">
+                                  <span class="col-3 padd">Quantité :</span>
                                   <input type="text" name="myQuant<?php echo $row['id']?>" class="col-6 inputQTT" id="QTT<?php echo $row['id']; ?>">
                                   </div>
                                 </div>
@@ -175,14 +175,12 @@ if (isset($_SESSION['userID'])) {
                               }
                               </script> -->
                                                             
-
-                            <button type="submit" class="primary btnConnexion">Créer mon cocktail</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- COCKTAIL MAKER /!\ -->
-                <div class="col-4 mt-5"> 
+                <div class="col-4 mt-5 padd"> 
                   <main class="page__content mt-5">
                     <section class="cocktail">
                       <h2 class="cocktail__label" id="drink-name"></h2>
@@ -199,48 +197,42 @@ if (isset($_SESSION['userID'])) {
                   </main>
                 </div>
 
-                <!-- BLOC 2 -->
-                <div class="col-4 mt-5">
-                    <form method="POST" enctype="multipart/form-data">
-                      <div class="container">
-                          <div class="row justify-content-center">
-                              <div class="col-lg-8">
-                                  <div class="card mt-5">
-                                      <div class="card-body">
-                                          <h1 class="card-title text-center">Ajouter un cocktail</h1>
 
-                                          <div class="form-group">
-                                              <label for="nomCocktail">Nom du cocktail</label>
-                                              <input type="text" class="form-control" id="nomCocktail" name="nomCocktail" required>
-                                          </div>
+                <div class="col-4 card loginWave loginWaveInsc shadowCook formMaker">
+                    <div class="card-body blocIng">
+                        <h1 class="card-title text-center">Informations</h1>
+                        <form method="POST">
 
-                                          <div class="form-group">
-                                              <label for="description">Description du cocktail</label>
-                                          </div>
-                                          <textarea class="form-control" id="description" name="description" rows="6" required></textarea>
+                        <div class="form-group">
+                            <label for="nomCocktail">Nom du cocktail</label>
+                            <input type="text" class=" inputQTT" id="nomCocktail" name="nomCocktail" required>
 
-                                          <div class="form-group my-4">
-                                              <label for="image">Image du cocktail</label>
-                                          </div>
-                                          <input type="file" class="form-control-file mx-5 mb-5" id="image" name="image_cocktail" required>
+                        </div>
 
-                                          <?php if ($isUserAdmin) : ?>
-                                              <div class="form-group">
-                                                  <div class="form-check">
-                                                      <input class="form-check-input" type="checkbox" id="isClassic" name="isClassic">
-                                                      <label class="form-check-label" for="isClassic">Mettre en magasin</label>
-                                                  </div>
-                                              </div>
-                                          <?php endif; ?>
+                        <div class="form-group">
+                            <label for="description">Description du cocktail</label>
+                        </div>
+                        <textarea class="form-control" id="description" name="description" rows="6" required></textarea>
 
-                                          <button type="submit" id="submit_create" class="btn btn-primary" name="ajouter">Ajouter</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
+                        <div class="form-group my-4">
+                            <label for="image">Image du cocktail</label>
+                        </div>
+                        <input type="file" class="form-control-file mx-5 mb-5" id="image" name="image_cocktail" required>
+
+                        <?php if ($isUserAdmin) : ?>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isClassic" name="isClassic">
+                                    <label class="form-check-label" for="isClassic">Mettre en magasin</label>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <button type="submit" id="submit_create" class="primary " name="ajouter" style="margin-left: 30% !important;">Créer mon cocktail</button>
+                        </form>
+                    </div>
                 </div>
+
               </div>
             </div>
           </div>

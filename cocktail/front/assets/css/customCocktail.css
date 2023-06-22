@@ -20,6 +20,20 @@
   font-size: 1em;
 }
 
+
+.formMaker {
+  padding-left: 0 !important;
+  font-size: 15px !important;
+}
+
+.padd {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+textarea{
+  background-color: #b083dd1a !important;
+}
 /* ========================== *\
    Utilities
 \* ========================== */
@@ -272,7 +286,10 @@ label {
 }
 
 .ingredient-list {
-  left: calc(100% + 2rem);
+  /* left: calc(100% + 2rem); */
+  text-align: center;
+  list-style-type: none ;
+  color: black;
   position: absolute;
   top: 0;
 }
