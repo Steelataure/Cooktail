@@ -46,6 +46,34 @@ if (isset($_POST['quantity'])) {
     $quantity = $_POST['quantity'];
 }
 $totalAmount = $price * $quantity;
+
+
+
+// ajouter au panier
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupération des valeurs soumises par le formulaire
+    $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
+    $description = $item['Description'];
+    $price = $item['Prix'];
+    $imagePath = $item['Path'];
+
+    // Création d'un tableau associatif pour stocker les détails du produit
+    $product = array(
+        'description' => $description,
+        'price' => $price,
+        'imagePath' => $imagePath
+    );
+
+    // Ajout du produit au panier (variable de session)
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array();
+    }
+    $_SESSION['cart'][] = $product;
+
+    // Redirection vers une autre page ou affichage d'un message de succès, par exemple :
+    header('Location: panier.php');
+    exit();
+}
 ?>
 
 <title>Formulaire de commande</title>

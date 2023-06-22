@@ -58,6 +58,10 @@
                                     <button type="submit" name="deconnexion">Déconnexion</button>
                                 </form>
                             </li>
+                            
+                            <li class="">
+                                <a class="nav-link userBar" href="login"><i class="fas fa-shopping-basket shadowCookTxt "></i></a>
+                            </li>
                         <?php } else { ?>
                             <li class="">
                                 <a class="nav-link userBar" href="inscription"><i class="fas fa-user-plus shadowCookTxt"></i></a>
@@ -68,9 +72,6 @@
                             </li>
                         <?php } ?>
                         
-                            <li class="">
-                                <a class="nav-link userBar" href="login"><i class="fas fa-shopping-basket shadowCookTxt "></i></a>
-                            </li>
                             <li class="">
                                 <a class="nav-link userBar" href="#menu"><i class="fas fa-bars shadowCookTxt "></i></a>
                             </li>

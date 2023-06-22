@@ -80,7 +80,7 @@ body {
 }
 
 .form-group {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
 

@@ -92,20 +92,21 @@ $rootDir = basename(dirname($rootDir));
         width: 300px;
         height: 300px;
         margin: auto;
-        margin-top: 20px;
+        margin-top: 2em;
+        border-radius: 20px;
         /*object-fit: cover;*/
     }
 
     .card-img-display {
         width: 200px;
         height: 200px;
-        margin-top:20px;
-        margin-bottom: 20px;
+        border-radius: 20px;
+        margin-bottom:0 !important;
     }
 
-    p {
+    /* p {
         margin-left: 10px;
-    }
+    } */
 
     .content {
         display: flex;
@@ -119,7 +120,7 @@ $rootDir = basename(dirname($rootDir));
         margin-bottom: 30px;
         margin-left: auto;
         margin-right: auto;
-        width: 300px;
+        /* width: 300px; */
         justify-content: center;
         text-align: center;
     }
@@ -137,35 +138,46 @@ $rootDir = basename(dirname($rootDir));
         margin-bottom: 40px;
         margin-top: 10px;
     }
-
+    .etape {
+        padding-right: 3em;
+        padding-left: 3em;
+    }
+    .etapeRecette {
+        font-size: 1.2em;
+        font-style: italic;
+        color: #d7d7ff !important;
+    }
+    .ustensileNom {
+        text-align: center;
+        width: 100%;
+    }
 </style>
 
 <div class="container">
-    <div class="order-form">
-        <div class="card">
+    <div class="order-form mb-5">
+        <div class="card shadowCook mb-5">
             <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
             <div class="card-body">
                 <h1 class="card-title"><?php echo $title; ?></h1>
             </div>
-            <div>
+            <div class="etape">
             <?php 
             foreach ($item2 as $row):
             ?>
-                <p>Etape : <?= $row['NumeroEtape']?></p>
-                <p><?= $row['Description']?></p>
+                <p class="etapeRecette">Etape : <?= $row['NumeroEtape']?></p>
+                <div class="ml-4"><?= $row['Description']?></div>
             <?php endforeach; ?>
             </div>
             <h3>Ustensiles :</h3>
-            <div class="content">
+            <div class="content">   
            <?php 
             foreach ($item3 as $row):
             ?>
-                <span class="shadowCook2">
-                <div>
-                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="card-img-display" />
-                        <p><?= $row['nom'] ?></p>
+                <div class="col-3 card-title">
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="shadowCook2 card-img-display" />
+                        <p class="ustensileNom"><?= $row['nom'] ?></p>
                 </div>
-                </span>
+                
             <?php endforeach; ?>
             </div>
             <h3>Ingredients :</h3>
@@ -173,12 +185,10 @@ $rootDir = basename(dirname($rootDir));
             <?php 
             foreach ($item4 as $row):
             ?>
-                <span class="shadowCook2">
-                        <div>
-                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="card-img-display" />
-                        <p><?= $row['Libelle'] ?></p>
-                        </div>
-                </span>
+                <div class="col-3 card-title">
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="shadowCook2 card-img-display" />
+                        <p class="ustensileNom"><?= $row['Libelle'] ?></p>
+                </div>
             <?php endforeach; ?>
             </div>
         </div>
@@ -192,4 +202,5 @@ $rootDir = basename(dirname($rootDir));
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';
 ?>
