@@ -27,26 +27,37 @@ $query->execute();
 $item = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $sql2 = "SELECT *
-        FROM Cocktails, Ustensiles, Cocktails_Ustensiles, Files
-        WHERE Cocktails.id = Cocktails_Ustensiles.CocktailsID
-        AND CocktailsID = :id
-        AND Ustensiles.Ustensileid = Cocktails_Ustensiles.UstensilesID
-        AND Ustensiles.ImageID = Files.id";
+        FROM Cocktails, Cocktails_Recette
+        WHERE Cocktails.id = :id
+        AND Cocktails.RecetteID = Cocktails_Recette.CocktailID
+        ";
 $query2 = $dbh->prepare($sql2);
 $query2->bindParam(":id", $CocktailId, PDO::PARAM_INT);
 $query2->execute();
 $item2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 $sql3 = "SELECT *
-        FROM Cocktails, Ingredients, Cocktails_Ingredients, Files
-        WHERE Cocktails.id = Cocktails_Ingredients.CocktailID
-        AND CocktailID = :id
-        AND Ingredients.ID = Cocktails_Ingredients.Ingredientid
-        AND Ingredients.ImageID = Files.id";
+        FROM Cocktails, Ustensiles, Cocktails_Ustensiles, Files
+        WHERE Cocktails.id = Cocktails_Ustensiles.CocktailsID
+        AND CocktailsID = :id
+        AND Ustensiles.Ustensileid = Cocktails_Ustensiles.UstensilesID
+        AND Ustensiles.ImageID = Files.id";
 $query3 = $dbh->prepare($sql3);
 $query3->bindParam(":id", $CocktailId, PDO::PARAM_INT);
 $query3->execute();
 $item3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+
+$sql4 = "SELECT *
+        FROM Cocktails, Ingredients, Cocktails_Ingredients, Files
+        WHERE Cocktails.id = Cocktails_Ingredients.CocktailID
+        AND CocktailID = :id
+        AND Ingredients.ID = Cocktails_Ingredients.Ingredientid
+        AND Ingredients.ImageID = Files.id
+        ";
+$query4 = $dbh->prepare($sql4);
+$query4->bindParam(":id", $CocktailId, PDO::PARAM_INT);
+$query4->execute();
+$item4 = $query4->fetchAll(PDO::FETCH_ASSOC);
 // $sql2 = "SELECT *
 //          FROM Ustensiles, Cocktails, Cocktails_Ustensiles
 //          WHERE "
@@ -62,7 +73,6 @@ if (count($item) == 0) {
 
 $title = $item[0]['CocktailLibelle'];
 $imagePath = $item[0]['Path'];
-$etape = $item[0]['NbrEtape'];
 
 $rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
 $rootDir = basename(dirname($rootDir));
@@ -72,17 +82,44 @@ $rootDir = basename(dirname($rootDir));
 <title>Formulaire de commande</title>
 <style>
 
+    .order-form {
+        display: flex;
+    }
+
     .card-img-top {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
         margin: auto;
         margin-top: 20px;
         /*object-fit: cover;*/
     }
 
-    .order-form {
-        max-width: 500px;
-        margin: 0 auto;
+    .card-img-display {
+        width: 200px;
+        height: 200px;
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-left: 10px;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .shadowCook2 {
+        display: inline-flex;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        justify-content: center;
+        text-align: center;
     }
 
     .total-amount {
@@ -95,6 +132,8 @@ $rootDir = basename(dirname($rootDir));
 
     h3 {
         text-align: center;
+        margin-bottom: 40px;
+        margin-top: 10px;
     }
 
 </style>
@@ -104,42 +143,42 @@ $rootDir = basename(dirname($rootDir));
         <div class="card">
             <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
             <div class="card-body">
-                <h5 class="card-title"><?php echo $title; ?></h5>
+                <h1 class="card-title"><?php echo $title; ?></h1>
             </div>
-            <p>Etape 1 : <?= $item[0]['Etape1'] ?></p>
-            <p>Etape 2 : <?= $item[0]['Etape2'] ?></p>
-            <p>Etape 3 : <?= $item[0]['Etape3'] ?></p>
-            <p>Etape 4 : <?= $item[0]['Etape4'] ?></p>
-            <p>Etape 5 : <?= $item[0]['Etape5'] ?></p>
-            <p>Etape 6 : <?= $item[0]['Etape6'] ?></p>
-            <p>Etape 7 : <?= $item[0]['Etape7'] ?></p>
-            <p>Etape 8 : <?= $item[0]['Etape8'] ?></p>
-            <p>Etape 9 : <?= $item[0]['Etape9'] ?></p>
-            <p>Etape 10 : <?= $item[0]['Etape10'] ?></p>
-            <p>Etape 11 : <?= $item[0]['Etape11'] ?></p>
-            <p>Etape 12 : <?= $item[0]['Etape12'] ?></p>
-            <h3>Ustensiles :</h3>
-           <?php 
+            <div>
+            <?php 
             foreach ($item2 as $row):
             ?>
-                <span class="image shadowCook2">
-                <div class="d-flex align-items-center position-relative ">
-                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
-                        <!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
-                </div>
-                </span>
+                <p>Etape : <?= $row['NumeroEtape']?></p>
+                <p><?= $row['Description']?></p>
             <?php endforeach; ?>
-            <h3>Ingredients :</h3>
-            <?php 
+            </div>
+            <h3>Ustensiles :</h3>
+            <div class="content">
+           <?php 
             foreach ($item3 as $row):
             ?>
-                <span class="image shadowCook2">
-                <div class="d-flex align-items-center position-relative ">
-                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="img-fluid" />
-                        <!-- <img src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR .  '/public/assets/cocktails/image' . $key . '.png'; ?>"/> -->
+                <span class="shadowCook2">
+                <div>
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="card-img-display" />
+                        <p><?= $row['nom'] ?></p>
                 </div>
                 </span>
             <?php endforeach; ?>
+            </div>
+            <h3>Ingredients :</h3>
+            <div class="content">
+            <?php 
+            foreach ($item4 as $row):
+            ?>
+                <span class="shadowCook2">
+                        <div>
+                        <img src="..<?= $row['Path'] ?>" alt="<?= $row['nom'] ?>" class="card-img-display" />
+                        <p><?= $row['Libelle'] ?></p>
+                        </div>
+                </span>
+            <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>
