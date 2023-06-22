@@ -5,92 +5,64 @@ session_start();
 $dbh = include '../config/config.php';
 
 
+$total = 0;
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) {
+        $total += $product['price'];
+    }
+}
 
-
-
-// Affichage des résultats
-// if (count($results) > 0) :
 ?>
 
 <body class="is-preload">
-    <!-- Wrapper -->
     <div id="wrapper">
-
-        <!-- Main -->
         <div id="main">
             <div class="inner">
                 <header>
                     <h1>Panier.</h1>
                 </header>
-                <div class="row" style="display: flex;justify-content: space-around; max-height: 40vh;">
-                    <div class="col-md-7" style="max-height: 60vh;overflow-y: auto;">
+                <?php if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
+                <div class="row" style="display: flex;justify-content: center;">
+                    <div class="col-md-10"
+                        style="padding-left: 0px;padding-left: 0px;max-height: 50vh;overflow-y: auto;">
                         <?php foreach ($_SESSION['cart'] as $product): ?>
-                        <div class="row produit"
-                            style=" display: flex; justify-content: stretch; align-items: center; margin: 10px 0px; background-color: rgb(73 73 83);  max-height: 20vh; overflow-y: auto;">
-                            <div class="col-md-3">
-                                <img src="<?php echo $product['imagePath']; ?>" alt="Image du produit">
+                        <div class="row produit">
+                            <div class="col-md-3" style="display: flex;justify-content: center;align-items: center;">
+                                <img style="width: 60%;background-position: center;background-size: cover;"
+                                    src="..<?php echo $product['imagePath']; ?>" alt="Image du produit">
                             </div>
-                            <div class="col-md-6" style="max-height: 22vh;overflow-y: auto;">
-                                <p><?php echo $product['description']; ?></p>
+                            <div class="col-md-6" style="max-height: 15vh;overflow-y: auto;padding: 0px 10px;">
+                                <p style="margin-bottom: 0px;"><?php echo $product['description']; ?></p>
                             </div>
                             <div class="col-md-2">
-                                <p>Prix : <?php echo $product['price']; ?></p>
+                                <p style="margin-bottom: 0px;">Prix : <?php echo $product['price']; ?></p>
                             </div>
                         </div>
                         <?php endforeach; ?>
                     </div>
-                    <div class="col-md-4" style="background-color: blue;">
-                        total :
+                    <div class="col-md-10" style="background-color: black; padding-left: 0px;padding: 20px;">
+                        <p style="margin-bottom: 0px;font-size: 3vh;">Total du panier : <?php echo $total; ?> € </p>
                     </div>
                 </div>
+                <?php else: ?>
+                <p style="text-align: center;font-size: 5vh;">Votre panier est vide.</p>
+                <?php endif; ?>
             </div>
         </div>
-        <!-- Footer -->
-        <footer id="footer">
-            <div class="inner">
-                <section>
-                    <h2 class="shadowCookTxt">CONTACT</h2>
-                    <form method="post" action="#">
-                        <div class="fields">
-                            <div class="field half">
-                                <input type="text" name="name" id="name" placeholder="Name" />
-                            </div>
-                            <div class="field half">
-                                <input type="email" name="email" id="email" placeholder="Email" />
-                            </div>
-                            <div class="field">
-                                <textarea name="message" id="message" placeholder="Message"></textarea>
-                            </div>
-                        </div>
-                        <ul class="actions">
-                            <li><input type="submit" value="Send" class="primary" /></li>
-                        </ul>
-                    </form>
-                </section>
-                <section>
-                    <h2 class="shadowCookTxt">Réseaux</h2>
-                    <ul class="icons">
-                        <li><a href="#" class="icon brands style2 fa-twitter shadowCookTxt"><span
-                                    class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon brands style2 fa-facebook-f shadowCookTxt"><span
-                                    class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon brands style2 fa-instagram shadowCookTxt"><span
-                                    class="label">Instagram</span></a></li>
-                        <li><a href="#" class="icon solid style2 fa-phone shadowCookTxt"><span
-                                    class="label">Phone</span></a></li>
-                        <li><a href="#" class="icon solid style2 fa-envelope shadowCookTxt"><span
-                                    class="label">Email</span></a></li>
-                    </ul>
-                </section>
-                <ul class="copyright">
-                    <li>&copy; Projet Etudiant</li>
-                    <li><a href=""> Paris</a></li>
-                </ul>
-            </div>
-        </footer>
-
     </div>
 </body>
+
+<style>
+.produit {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0px;
+    background-color: rgb(73 73 83);
+    max-height: 20vh;
+}
+</style>
 
 <?php
 $content = ob_get_clean();
