@@ -26,7 +26,9 @@ $item = $query->fetch(PDO::FETCH_ASSOC);
 
 // Vérification si l'article existe
 if (!$item) {
-    echo "Article non trouvé.";
+    $_SESSION['textError'] = "Article non trouvé.";
+    header("Location: erreur");
+
     exit();
 }
 
@@ -96,4 +98,5 @@ $totalAmount = $price * $quantity;
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';
 ?>

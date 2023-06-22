@@ -67,7 +67,9 @@ $item4 = $query4->fetchAll(PDO::FETCH_ASSOC);
 // $item = $query->fetchAll(PDO::FETCH_ASSOC);
 // Vérification si l'article existe
 if (count($item) == 0) {
-    echo "Cocktail non trouvé.";
+    $_SESSION['textError'] = "Cocktail non trouvé.";
+    header("Location: erreur");
+
     exit();
 }
 

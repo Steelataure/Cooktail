@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-
+$text = $_SESSION['textError'];
 ?>
 
 	<body class="is-preload">
@@ -12,7 +12,9 @@ session_start();
 					<div id="main">
 							<div class="centerBox mt-5">
 								<h1>Oops...</h1>
-								<p>Cocktail non trouvé</p>
+								<p><?php 
+								echo $text 
+								?></p>
 							</div>
 					</div>
 				</div>
@@ -21,3 +23,4 @@ session_start();
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';?>

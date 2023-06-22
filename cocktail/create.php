@@ -110,4 +110,5 @@ if (isset($_SESSION['userID'])) {
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';
 ?>

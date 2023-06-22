@@ -47,3 +47,4 @@ Aucun résultat trouvé.
 
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';

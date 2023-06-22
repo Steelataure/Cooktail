@@ -134,3 +134,4 @@ if (count($results) > 0) :
 <?php endif;
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';

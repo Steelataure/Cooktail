@@ -25,7 +25,7 @@ if (isset($_SESSION['isLogged'])) {
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <button type="submit" class="primary btnConnexion" name="connexion">Connexion</button>
-                        <a class="btn" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
+                        <a class="btn colorCompte" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
                             !</a>
                     </form>
                 </div>
@@ -37,4 +37,5 @@ if (isset($_SESSION['isLogged'])) {
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';
 ?>

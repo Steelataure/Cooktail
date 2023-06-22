@@ -28,7 +28,7 @@ include "../config/inscription.php";
                                 required>
                         </div>
                         <button type="submit" class="primary btnConnexion">Inscription</button>
-                        <a class="btn" href="login.php">Vous avez déjà un compte ? Connectez-vous !</a>
+                        <a class="btn colorCompte" href="login.php">Vous avez déjà un compte ? Connectez-vous !</a>
                     </form>
                 </div>
             </div>
@@ -39,3 +39,4 @@ include "../config/inscription.php";
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';?>

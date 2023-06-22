@@ -155,3 +155,4 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+include 'footer.php';?>
