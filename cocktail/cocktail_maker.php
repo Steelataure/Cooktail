@@ -26,31 +26,26 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="row">
 
 
-                    <!-- bloc 1 -->
-                    <div class="col-4"
-                        style="background-color: red; padding: 2em; overflow-y: scroll; max-height: 300px;">
+                    <div class="col-4" style="padding: 2em; overflow-y: scroll; max-height: 600px;">
                         <!-- CARD BLOC 1 -->
                         <div class="card mt-5 loginWave loginWaveInsc shadowCook">
                             <div class="card-body">
                                 <h1 class="card-title text-center">Ingrédient</h1>
                                 <form method="POST">
-                                    <div class="dropdown">
-                                        <span>Sélectionnez les ingrédients :</span>
-                                        <div class="dropdown-content">
+                                    <div class="form-group">
+                                        <select class="form-control" id="ingredients" name="ingredients[]" multiple>
                                             <?php foreach ($results as $row) { ?>
-                                            <label for="<?php echo 'ingredient-' . $row['id']; ?>">
-                                                <input type="checkbox" id="<?php echo 'ingredient-' . $row['id']; ?>"
-                                                    name="ingredients[]" value="<?php echo $row['id']; ?>">
-                                                <?php echo $row['Libelle']; ?>
-                                            </label><br>
+                                            <option value="<?php echo $row['id']; ?>"><?php echo $row['Libelle']; ?>
+                                            </option>
                                             <?php } ?>
-                                        </div>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Envoyer</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+
 
 
 
