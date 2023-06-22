@@ -146,6 +146,8 @@ $rootDir = basename(dirname($rootDir));
         font-size: 1.2em;
         font-style: italic;
         color: #d7d7ff !important;
+        margin-bottom: 1em;
+        margin-top: 2em;
     }
     .ustensileNom {
         text-align: center;
