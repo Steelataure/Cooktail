@@ -13,7 +13,7 @@ if (isset($_POST['connexion'])) {
 
     if (isset($data->username) && password_verify($password, $data->password)) {
         $_SESSION['isLogged'] = $username;
-        $_SESSION['userID'] = $data->id; // Ajout de l'ID de l'utilisateur à la session
+        $_SESSION['userID'] = $data->id;
         echo "<div><h3 class='message'>Vous êtes connecté</h3></div>";
         header("Location: index");
         exit;

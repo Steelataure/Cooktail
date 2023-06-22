@@ -18,28 +18,38 @@ if (isset($_POST['cocktailID']) && isset($_POST['voteType'])) {
     $userID = $_SESSION['userID'];
 
     // Vérifie si l'utilisateur a déjà voté pour ce cocktail
-    $voteCookieName = 'vote_' . $cocktailID . '_' . $userID;
+    $query = "SELECT * FROM Votes WHERE cocktailID = :cocktailID AND UserID = :UserID";
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(':cocktailID', $cocktailID, PDO::PARAM_INT);
+    $stmt->bindParam(':UserID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
 
-    if (!isset($_COOKIE[$voteCookieName])) {
+    $existingVote = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$existingVote) {
         // Si l'utilisateur n'a pas encore voté, enregistre le vote
-        $query = "";
+        $query = "INSERT INTO Votes (cocktailID, UserID, VoteType) VALUES (:cocktailID, :UserID, :VoteType)";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':cocktailID', $cocktailID, PDO::PARAM_INT);
+        $stmt->bindParam(':UserID', $userID, PDO::PARAM_INT);
+        $stmt->bindParam(':VoteType', $voteType, PDO::PARAM_STR);
+        $stmt->execute();
 
+        // Met à jour les votes du cocktail dans la table Cocktails
+        $updateQuery = "";
         if ($voteType === 'like') {
-            $query = "UPDATE Cocktails SET Upvotes = Upvotes + 1 WHERE id = :cocktailID";
+            $updateQuery = "UPDATE Cocktails SET Upvotes = Upvotes + 1 WHERE id = :cocktailID";
         } elseif ($voteType === 'dislike') {
-            $query = "UPDATE Cocktails SET Downvotes = Downvotes + 1 WHERE id = :cocktailID";
+            $updateQuery = "UPDATE Cocktails SET Downvotes = Downvotes + 1 WHERE id = :cocktailID";
         }
 
-        if (!empty($query)) {
-            $stmt = $dbh->prepare($query);
-            $stmt->bindParam(':cocktailID', $cocktailID, PDO::PARAM_INT);
-            $stmt->execute();
-
-            // Définit un cookie pour enregistrer le vote de l'utilisateur
-            setcookie($voteCookieName, $voteType, time() + (86400 * 30), '/'); // Expire après 30 jours
+        if (!empty($updateQuery)) {
+            $updateStmt = $dbh->prepare($updateQuery);
+            $updateStmt->bindParam(':cocktailID', $cocktailID, PDO::PARAM_INT);
+            $updateStmt->execute();
         }
     } else {
-        // L'utilisateur a déjà voté, affichez un message d'erreur
+        // L'utilisateur a déjà voté, affiche un message d'erreur
         $errorMessage = "Vous avez déjà voté pour ce cocktail.";
     }
 }
@@ -55,8 +65,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Affichage des résultats
 if (count($results) > 0) :
-
-
 ?>
 <div id="wrapper">
     <div id="main">
