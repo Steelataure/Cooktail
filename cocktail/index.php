@@ -26,7 +26,7 @@ if (count($results) > 0) :
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1>Nos Recettes phares.</h1>
+								<h1>Brisez les chaînes de la sobriété et embrassez l'extase enivrante de l'alcool. La vie est trop courte pour rester sobre, plongez dans un tourbillon de plaisirs liquides et laissez chaque goutte vous libérer de l'ennui quotidien.</h1>
 								<p>bla bla bla.</p>
 							</header>
 							<section class="tiles">
