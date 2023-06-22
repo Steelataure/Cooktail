@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./front/assets/css/main.css" />
     <link rel="stylesheet" href="./front/assets/sass/wavy.scss" />
     <link rel="stylesheet" href="./front/assets/css/custom.css" />
+	<link rel="stylesheet" href="./front/assets/css/customCocktail.css">
 
     <!-- <link rel="stylesheet" href="./front/assets/css/bootstrap.min.css" /> -->
     <noscript><link rel="stylesheet" href="./front/assets/css/noscript.css" /></noscript>
@@ -29,7 +30,7 @@
         <!-- Header -->
         <div class="inner titreLogo col-5">
         <!-- Logo -->
-        <div class="bubbles" style="max-height:50px !important; font-size: 5px;">
+        <div class="bubbles iconeCoock" style="max-height:50px !important; font-size: 5px;">
                 <i class="fas fa-circle shadowCookTxt bubble b2"></i>
                 <i class="fas fa-circle shadowCookTxt bubble b5"></i>
                 <i class="fas fa-circle shadowCookTxt bubble"></i>
@@ -40,8 +41,8 @@
 				</div>
             <a href="index" class="logo">
 
-            <h4 class="borderWave"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
-            <h4 class="waveTitle"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
+            <h4 class="borderWave iconeCoock"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
+            <h4 class="waveTitle iconeCoock"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
 
             </a>
         </div>
