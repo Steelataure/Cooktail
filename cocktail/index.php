@@ -38,7 +38,7 @@ if (count($results) > 0) :
 											</div>
 										</span>
 										<a href="./fiche_recette?id=<?= $row['cocktail'] ?>">
-											<h2><?= $row['CocktailLibelle'] ?></h2>
+											<h2 class="titreCocktail"><?= $row['CocktailLibelle'] ?></h2>
 											<div class="content">
 												<span>- <?= $row['Description'] ?></span>
 												<br></br>

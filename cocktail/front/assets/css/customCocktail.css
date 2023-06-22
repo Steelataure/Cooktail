@@ -286,7 +286,7 @@ label {
   transform: translateX(-1rem);
 }
 .ingredient-list .ingredient:before {
-  background-color: black;
+  /* background-color: black; */
   border-radius: 50vmin;
   content: "";
   height: 2px;
@@ -311,8 +311,8 @@ label {
 \* ========================== */
 .garnish {
   --size: 12vmin;
-  background-color: #fff44f;
-  border: 1vmin solid #f2e300;
+  background-color: #acef86 ;
+  border: 1vmin solid #9fdb72;
   border-radius: 100%;
   box-shadow: inset white 0 0 0 0.5vmin;
   height: var(--size);

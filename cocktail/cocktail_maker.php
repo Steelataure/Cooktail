@@ -145,8 +145,9 @@ if (isset($_SESSION['userID'])) {
                                         drink.push(ingredient);
                                         getDrink();
                                       } else {
-                                        drink.splice(drink.findIndex(v => v.text ==='<?php echo $row['Libelle']?>'), 1);
+                                        drink.splice(drink.findIndex(v => v.text === '<?php echo $row['Libelle']?>'), 1);
                                         console.log(drink)
+                                        getDrink();
                                       }
                                   });
                               });
@@ -176,17 +177,6 @@ if (isset($_SESSION['userID'])) {
                 <!-- COCKTAIL MAKER /!\ -->
                 <div class="col-4 mt-5"> 
                   <main class="page__content mt-5">
-                    <!-- <section class="controls u-vertical-rhythm" id="controls">
-                      <h1 class="controls__label">Select a cocktail</h1>
-                      <div class="form-group">
-                        <input type="radio" name="drink-select" id="negroni"/>
-                        <label for="negroni">Negroni</label>
-                        <input type="radio" name="drink-select" id="manhattan"/>
-                        <label for="manhattan">Manhattan</label>
-                        <input type="radio" name="drink-select" id="old-fashioned"/>
-                        <label for="old-fashioned">Old Fashioned</label>
-                      </div>
-                    </section> -->
                     <section class="cocktail">
                       <h2 class="cocktail__label" id="drink-name"></h2>
                       <div class="glass" id="glass">
@@ -204,43 +194,6 @@ if (isset($_SESSION['userID'])) {
 
                 <!-- BLOC 2 -->
                 <div class="col-4 mt-5">
-                    <div class="card mt-5 loginWave loginWaveInsc shadowCook">
-                    <section class="controls u-vertical-rhythm" id="controls">
-                      <h1 class="controls__label">Select a cocktail</h1>
-                      <div class="form-group">
-                        <input type="radio" name="drink-select" id="negroni"/>
-                        <label for="negroni">Negroni</label>
-                        <input type="radio" name="drink-select" id="manhattan"/>
-                        <label for="manhattan">Manhattan</label>
-                        <input type="radio" name="drink-select" id="old-fashioned"/>
-                        <label for="old-fashioned">Old Fashioned</label>
-                      </div>
-                    </section>
-                      <!-- <div class="card-body">
-                          <h1 class="card-title text-center">Ingrédient</h1>
-                          <form method="POST">
-                              <div class="form-group">
-                                  <label for="username">Pseudo</label>
-                                  <input type="text" class="form-control" id="username" name="username" required>
-                              </div>
-                              <div class="form-group">
-                                  <label for="email">Email</label>
-                                  <input type="email" class="form-control" id="email" name="email" required>
-                              </div>
-                              <div class="form-group">
-                                  <label for="password">Mot de passe</label>
-                                  <input type="password" class="form-control" id="password" name="password" required>
-                              </div>
-                              <div class="form-group">
-                                  <label for="confirm_password">Confirmation mot de passe</label>
-                                  <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                                      required>
-                              </div>
-                              <button type="submit" class="primary btnConnexion">Inscription</button>
-                              <a class="btn" href="login.php">Vous avez déjà un compte ? Connectez-vous !</a>
-                          </form>
-                      </div> -->
-                    </div>
                     <form method="POST" enctype="multipart/form-data">
                       <div class="container">
                           <div class="row justify-content-center">

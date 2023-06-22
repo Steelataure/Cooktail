@@ -40,7 +40,7 @@ if (isset($_POST['deleteProduct'])) {
                 </header>
                 <?php if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
                 <div class="row" style="display: flex;justify-content: center;">
-                    <div class="col-md-10"
+                    <div class="col-md-10 blocIng"
                         style="padding-left: 0px;padding-left: 0px;max-height: 50vh;overflow-y: auto;">
                         <?php foreach ($_SESSION['cart'] as $key => $product): ?>
                         <div class="row produit">
@@ -48,7 +48,7 @@ if (isset($_POST['deleteProduct'])) {
                                 <img style="width: 80%;background-position: center;background-size: cover;"
                                     src="..<?php echo $product['imagePath']; ?>" alt="Image du produit">
                             </div>
-                            <div class="col-md-5" style="max-height: 15vh;overflow-y: auto;padding: 0px 10px;">
+                            <div class="col-md-5 blocIng" style="max-height: 15vh;overflow-y: auto;padding: 0px 10px;">
                                 <p style="margin-bottom: 0px;"><?php echo $product['description']; ?></p>
                             </div>
                             <div class="col-md-2">
@@ -63,7 +63,7 @@ if (isset($_POST['deleteProduct'])) {
                                 <form method="post" style="margin-bottom: 0px;">
                                     <input type="hidden" name="productId" value="<?php echo $key; ?>">
                                     <button type="submit" style="font-size: 2vh;padding: 0px;"
-                                        name="deleteProduct">❌</button>
+                                        name="deleteProduct">✖</button>
 
                                 </form>
                             </div>
