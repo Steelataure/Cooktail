@@ -42,10 +42,8 @@
                 <i class="fas fa-circle shadowCookTxt bubble b8"></i>
             </div>
             <a href="index" class="logo">
-
-                <h4 class="borderWave iconeCoock"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
-                <h4 class="waveTitle iconeCoock"><i class="fas fa-cocktail" style="font-size "></i>Cooktail</h4>
-
+                <h4 class="borderWave iconeCoock"><i class="fas fa-cocktail"></i>Cooktail</h4>
+                <h4 class="waveTitle iconeCoock"><i class="fas fa-cocktail"></i>Cooktail</h4>
             </a>
         </div>
         <div class=" col-5">
@@ -106,7 +104,7 @@
 
 </body>
 
-<style>
+<!-- <style>
 .message {
     position: fixed;
     animation: message 5s ease-out;
@@ -152,7 +150,7 @@
         opacity: 0;
     }
 }
-</style>
+</style> -->
 
 </html>
 
