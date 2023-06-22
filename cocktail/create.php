@@ -92,7 +92,7 @@ if (isset($_SESSION['userID'])) {
                             <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="isClassic" name="isClassic">
-                                    <label class="form-check-label" for="isClassic">Cocktail classique</label>
+                                    <label class="form-check-label" for="isClassic">Mettre en magasin</label>
                                 </div>
                             </div>
                         <?php endif; ?>
