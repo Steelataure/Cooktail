@@ -48,12 +48,26 @@
         </div>
         <div class=" col-5">
             <div class="row iconeMenu">
+                        <?php if (isset($_SESSION['isLogged'])) { ?>
+                            
+                           
+                            
+                            <li class="nav-item">
+                                <!-- <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span> -->
+                                <form method="POST" action="logout">
+                                    <button type="submit" name="deconnexion">Déconnexion</button>
+                                </form>
+                            </li>
+                        <?php } else { ?>
                             <li class="">
                                 <a class="nav-link userBar" href="inscription"><i class="fas fa-user-plus shadowCookTxt"></i></a>
                             </li>
+                            
                             <li class="">
                                 <a class="nav-link userBar" href="login"><i class="fas fa-user shadowCookTxt"></i></a>
                             </li>
+                        <?php } ?>
+                        
                             <li class="">
                                 <a class="nav-link userBar" href="login"><i class="fas fa-shopping-basket shadowCookTxt "></i></a>
                             </li>
@@ -61,22 +75,7 @@
                                 <a class="nav-link userBar" href="#menu"><i class="fas fa-bars shadowCookTxt "></i></a>
                             </li>
             </div>
-            <!-- <nav class="navbar navbar-expand-lg">
-                <div class="navbar-collapse">
-                    <ul class="navbar-nav mr-auto" style="-ms-flex-direction: initial !important;"> -->
-                        <?php if (isset($_SESSION['isLogged'])) { ?>
-                            <li class="nav-item">
-                                <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span>
-                                <form method="POST" action="logout">
-                                    <button type="submit" name="deconnexion">Déconnexion</button>
-                                </form>
-                            </li>
-                        <?php } else { ?>
-                           
-                        <?php } ?>
-                    <!-- </ul>
-                </div>
-            </nav> -->
+            
         </div>
 
     </header>
@@ -87,11 +86,9 @@
       <ul>
         <li><a href="index"><i class="mr-4 fas fa-home"></i>Accueil</a></li>
         <li><a href="shop"><i class="mr-4 fas fa-shopping-cart"></i>Boutique</a></li>
-        <li><a href="vote"><i class="mr-4 fas fa-shopping-cart"></i>Communauté</a></li>
-        <li><a href="create"><i class="mr-4 fas fa-shopping-cart"></i>Ajoute ton cocktail</a></li>
-        <li><a href="cocktail_maker"><i class="mr-4 fas fa-shopping-cart"></i>Cocktail Maker</a></li>
-
-
+        <li><a href="vote"><i class="mr-4 fas fa-users"></i>Communauté</a></li>
+        <li><a href="create"><i class="mr-4 fas fa-plus"></i>Ajoute ton cocktail</a></li>
+        <li><a href="cocktail_maker"><i class="mr-4 fas fa-wine-glass-alt"></i>Cocktail Maker</a></li>
 
       </ul>
 
