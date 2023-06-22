@@ -18,12 +18,12 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				<!-- Main -->
 					<div id="main">
 						<div class="innerMaker">
-							<header>
+							<!-- <header>
 								<h1>Notre Cocktail Maker</h1>
 								<p>bla bla bla.</p>
-							</header>
+							</header> -->
 
-              <div class="row">
+              <div class="row fontCocktail">
 
             
                 <!-- CARD BLOC 1 -->
@@ -39,9 +39,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                   <label for="<?php echo $row['id']; ?>"><?php echo $row['Libelle']; ?> 
                                   </div> 
                                   
-                                  <div class="col-6 row displayQTT ml-1" id="display<?php echo $row['id']; ?>">
+                                  <div class="col-8 row displayQTT ml-1" id="display<?php echo $row['id']; ?>">
                                   <span class="col-4">Quantité :</span>
-                                  <input type="text" class="col-8 inputQTT" id="QTT<?php echo $row['id']; ?>">
+                                  <input type="text" class="col-6 inputQTT" id="QTT<?php echo $row['id']; ?>">
                                   </div>
                                 </div>
                                 
@@ -68,9 +68,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <!-- COCKTAIL MAKER /!\ -->
-                <div class="col-4"> 
-                  <main class="page__content">
-                    <section class="controls u-vertical-rhythm" id="controls">
+                <div class="col-4 mt-5"> 
+                  <main class="page__content mt-5">
+                    <!-- <section class="controls u-vertical-rhythm" id="controls">
                       <h1 class="controls__label">Select a cocktail</h1>
                       <div class="form-group">
                         <input type="radio" name="drink-select" id="negroni"/>
@@ -80,7 +80,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <input type="radio" name="drink-select" id="old-fashioned"/>
                         <label for="old-fashioned">Old Fashioned</label>
                       </div>
-                    </section>
+                    </section> -->
                     <section class="cocktail">
                       <h2 class="cocktail__label" id="drink-name"></h2>
                       <div class="glass" id="glass">
@@ -97,9 +97,20 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <!-- BLOC 2 -->
-                <!-- <div class="col-4" style="background-color: blue; padding: 2em">
+                <div class="col-4 mt-5">
                     <div class="card mt-5 loginWave loginWaveInsc shadowCook">
-                      <div class="card-body">
+                    <section class="controls u-vertical-rhythm" id="controls">
+                      <h1 class="controls__label">Select a cocktail</h1>
+                      <div class="form-group">
+                        <input type="radio" name="drink-select" id="negroni"/>
+                        <label for="negroni">Negroni</label>
+                        <input type="radio" name="drink-select" id="manhattan"/>
+                        <label for="manhattan">Manhattan</label>
+                        <input type="radio" name="drink-select" id="old-fashioned"/>
+                        <label for="old-fashioned">Old Fashioned</label>
+                      </div>
+                    </section>
+                      <!-- <div class="card-body">
                           <h1 class="card-title text-center">Ingrédient</h1>
                           <form method="POST">
                               <div class="form-group">
@@ -122,10 +133,10 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               <button type="submit" class="primary btnConnexion">Inscription</button>
                               <a class="btn" href="login.php">Vous avez déjà un compte ? Connectez-vous !</a>
                           </form>
-                      </div>
+                      </div> -->
                     </div>
 
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
