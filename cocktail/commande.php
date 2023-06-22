@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product = array(
         'description' => $description,
         'price' => $price,
+        'quantity' => $quantity,
         'imagePath' => $imagePath
     );
 
@@ -78,49 +79,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <title>Formulaire de commande</title>
 <style>
-    .item-image {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-    }
+.item-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
 
-    .order-form {
-        max-width: 500px;
-        margin: 0 auto;
-    }
+.order-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
 
-    .total-amount {
-        font-size: 24px;
-    }
+.total-amount {
+    font-size: 24px;
+}
 </style>
 
-    <div class="container">
-        <div class="order-form">
-            <div class="card">
-                <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $title; ?></h5>
-                    <!-- <p class="card-text"><?php echo $description; ?></p> -->
-                    <form id="order-form" method="POST">
-                        <div class="form-group">
-                            <label for="quantity">Quantité :</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="<?php echo $quantity; ?>">
-                        </div>
-                        <h5 class="total-amount">Total : $<?php echo $totalAmount; ?></h5>
-                        <button type="submit" class="primary">Ajouter au panier</button>
-                    </form>
-                </div>
+<div class="container">
+    <div class="order-form">
+        <div class="card">
+            <img class="card-img-top shadowCook"
+                src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $title; ?></h5>
+                <!-- <p class="card-text"><?php echo $description; ?></p> -->
+                <form id="order-form" method="POST">
+                    <div class="form-group">
+                        <label for="quantity">Quantité :</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" min="1"
+                            value="<?php echo $quantity; ?>">
+                    </div>
+                    <h5 class="total-amount">Total : $<?php echo $totalAmount; ?></h5>
+                    <button type="submit" class="primary">Ajouter au panier</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 <script>
-    // Écouteur d'événement pour détecter les changements dans le champ de quantité
-    document.getElementById('quantity').addEventListener('input', function() {
-        var quantity = this.value;
-        var totalAmount = <?php echo $price; ?> * quantity;
-        document.querySelector('.total-amount').innerHTML = 'Total : $' + totalAmount.toFixed(2);
-    });
+// Écouteur d'événement pour détecter les changements dans le champ de quantité
+document.getElementById('quantity').addEventListener('input', function() {
+    var quantity = this.value;
+    var totalAmount = <?php echo $price; ?> * quantity;
+    document.querySelector('.total-amount').innerHTML = 'Total : $' + totalAmount.toFixed(2);
+});
 </script>
 
 <?php
