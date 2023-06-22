@@ -4,34 +4,25 @@ session_start();
 
 $dbh = include '../config/config.php';
 
-$query = "SELECT Cocktails.*, Files.Path, user.username AS createur
-FROM Cocktails
-INNER JOIN Files ON Cocktails.ImageID = Files.id
-INNER JOIN user ON Cocktails.CreateurID = user.id
-WHERE Cocktails.IsClassic = 0 AND Cocktails.Actif = 1";
-
-$stmt = $dbh->query($query);
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$rootDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
-$rootDir = basename(dirname($rootDir));
-
-// Affichage des résultats
-if (count($results) > 0) :
 ?>
+
 <head>
 	<link rel="stylesheet" href="./front/assets/css/customCocktail.css">
+   
 </head>
-
+	
 <body>
+<!-- partial:index.partial.html -->
 <main class="page__content">
   <section class="controls u-vertical-rhythm" id="controls">
     <h1 class="controls__label">Select a cocktail</h1>
     <div class="form-group">
-      <?php foreach ($results as $row) : ?>
-        <input type="radio" name="drink-select" id="<?= $row['CocktailLibelle'] ?>" />
-        <label for="<?= $row['CocktailLibelle'] ?>"><?= $row['CocktailLibelle'] ?></label>
-      <?php endforeach; ?>
+      <input type="radio" name="drink-select" id="negroni"/>
+      <label for="negroni">Negroni</label>
+      <input type="radio" name="drink-select" id="manhattan"/>
+      <label for="manhattan">Manhattan</label>
+      <input type="radio" name="drink-select" id="old-fashioned"/>
+      <label for="old-fashioned">Old Fashioned</label>
     </div>
   </section>
   <section class="cocktail">
@@ -47,14 +38,13 @@ if (count($results) > 0) :
     </div>
   </section>
 </main>
-
 <!-- partial -->
-<script src='https://cdn.jsdelivr.net/npm/zdog'></script>
-<script src="./front/assets/js/customCocktail.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/zdog'></script>
+  <script  src="./front/assets/js/customCocktail.js"></script>
 
 </body>
 
-<?php endif; ?>
+
 
 <?php
 $content = ob_get_clean();

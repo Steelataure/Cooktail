@@ -82,7 +82,7 @@ if (count($results) > 0) :
                     <a href="fiche_recette_community?id=<?= $row['id']?>">
                         <h2><?= $row['CocktailLibelle'] ?></h2>
                         <div class="content">
-                            <?= $row['Description'] ?>
+                            <!-- <?= $row['Description'] ?> -->
                             <p>
                                 Nombre de votes :
                                 <span class="vote-count">
