@@ -1,7 +1,5 @@
 const ingredientColors = document.getElementById('ingredient-colors');
 const ingredientList = document.getElementById('ingredient-list');
-// var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-// var drink = [];
 
 function getDrink() {
   ingredientColors.innerHTML = '';
