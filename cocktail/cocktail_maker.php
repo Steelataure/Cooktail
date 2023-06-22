@@ -5,9 +5,17 @@ session_start();
 $dbh = include '../config/config.php';
 
 // Exemple de requête de sélection pour récupérer des données de la base de données
-$query = "SELECT * FROM Ingredients";
+$query = "SELECT * FROM Ingredients ORDER BY Libelle";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// $query2 = "INSERT INTO Cocktails(CocktailLibelle, CreateurID, IsClassic, ImageID, Description) 
+// VALUES (CocktailLibelle, CreateurID, 0, Path, Description) "
+
+// foreach ($_POST['checkbox'] as $value) {
+//   $query3 = "INSERT INTO Cocktails_Ingredients(CocktailID, IngredientID, quantite) VALUES ()
+
+// } 
 
 ?>
 
@@ -35,7 +43,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               <?php foreach ($results as $row) { ?>
                                 <div class="row">
                                   <div  class="col-4">
-                                  <input type="checkbox" onclick="myFunction(<?php echo $row['id']; ?>)" id="<?php echo $row['id']; ?>">
+                                  <input type="checkbox" onclick="myFunction(<?php echo $row['id']; ?>)" id="<?php echo $row['id']; ?>" value="<?php echo $row['couleur']; ?>">
                                   <label for="<?php echo $row['id']; ?>"><?php echo $row['Libelle']; ?> 
                                   </div> 
                                   
@@ -50,11 +58,13 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               
                               <?php } ?>
                               <script>
+                              var drink = [];
                               function myFunction(id) {
                                 var checkBox = document.getElementById(id);
                                 var text = document.getElementById("display"+id);
                                 if (checkBox.checked == true){
                                   text.style.display = "inherit";
+                                  console.log("Dqsd");
                                 } else {
                                   text.style.display = "none";
                                 }
@@ -62,7 +72,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               </script>
                                                             
 
-                            <button type="submit" class="primary btnConnexion">Créer mon cocktail</button>
+                            <button type="submit" onclick="getDrink()" class="primary btnConnexion">Créer mon cocktail</button>
                         </form>
                     </div>
                 </div>
