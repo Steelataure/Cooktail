@@ -5,7 +5,7 @@ session_start();
 $dbh = include '../config/config.php';
 
 // Exemple de requête de sélection pour récupérer des données de la base de données
-$query = "SELECT * FROM Ingredients";
+$query = "SELECT * FROM Ingredients ORDER BY Libelle";
 $stmt = $dbh->query($query);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -109,7 +109,7 @@ if (isset($_SESSION['userID'])) {
                                   
                                   <div class="col-8 row displayQTT ml-1" id="display<?php echo $row['id']; ?>">
                                   <span class="col-4">Quantité :</span>
-                                  <input type="text" class="col-6 inputQTT" id="QTT<?php echo $row['id']; ?>">
+                                  <input type="text" name="myQuant<?php echo $row['id']?>" class="col-6 inputQTT" id="QTT<?php echo $row['id']; ?>">
                                   </div>
                                 </div>
                                 
@@ -129,21 +129,28 @@ if (isset($_SESSION['userID'])) {
                               document.addEventListener("DOMContentLoaded", function (event) {
                                 let check = 'input[name=myCheckbox'+<?php echo $row['id']?>+']';
                                   var _selector = document.querySelector(check);
+                                  let quant = 'input[name="myQuant<?php echo $row['id'] ?>"]';
+                                  var quantites = document.querySelector(quant);
                                   _selector.addEventListener('change', function (event2) {
+                                    
                                     console.log(event2)
                                       if (_selector.checked) {
                                         var id = '<?php echo $row['Libelle']?>';
                                         var value = _selector.value;
+                                        
                                         var ingredient =  {
                                             text: id,
                                             color: value
                                           };
-                                        
+                                        ingredient.quantite="";
                                         console.log("OK")
                                         console.log(drink)
-
                                         drink.push(ingredient);
                                         getDrink();
+                                        quantites.addEventListener('change', function(event3) {
+                                          ingredient.quantite = quantites.value;
+                                          getDrink();
+                                        });
                                       } else {
                                         drink.splice(drink.findIndex(v => v.text === '<?php echo $row['Libelle']?>'), 1);
                                         console.log(drink)
@@ -242,6 +249,7 @@ if (isset($_SESSION['userID'])) {
 <!-- partial:index.partial.html -->
   <script>
     var drink = [];
+    var quantite = "";
   </script>
 <!-- partial -->
   <script src='https://cdn.jsdelivr.net/npm/zdog'></script>

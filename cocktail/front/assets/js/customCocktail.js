@@ -32,7 +32,7 @@ function addIngredientListItem(ingredient) {
   let node = document.createElement('li');
   
   node.className = 'ingredient';
-  node.innerHTML = ingredient.text;
+  node.innerHTML = ingredient.quantite + ' '+ ingredient.text;
   
   return node;
 }
