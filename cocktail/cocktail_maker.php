@@ -28,7 +28,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- bloc 1 -->
                     <div class="col-4"
-                        style="background-color: red; padding: 2em; overflow-y: scroll; max-height: 300px;">
+                        style="background-color: red; padding: 2em; overflow-y: scroll; min-height: 700px;">
                         <!-- CARD BLOC 1 -->
                         <div class="card mt-5 loginWave loginWaveInsc shadowCook">
                             <div class="card-body">
