@@ -3,8 +3,6 @@ const ingredientList = document.getElementById('ingredient-list');
 // var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 // var drink = [];
 
-console.log(drink);
-
 function getDrink() {
   ingredientColors.innerHTML = '';
   ingredientList.innerHTML = '';

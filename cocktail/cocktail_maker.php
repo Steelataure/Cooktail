@@ -126,7 +126,6 @@ if (isset($_SESSION['userID'])) {
                                   var quantites = document.querySelector(quant);
                                   _selector.addEventListener('change', function (event2) {
                                     
-                                    console.log(event2)
                                       if (_selector.checked) {
                                         var id = '<?php echo $row['Libelle']?>';
                                         var value = _selector.value;
