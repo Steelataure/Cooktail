@@ -58,4 +58,4 @@ if (count($results) > 0) :
 <?php
 $content = ob_get_clean();
 include 'layout.php';
-include 'footer.php';
+include 'footer.php';?>

@@ -10,8 +10,8 @@ if (isset($_SESSION['isLogged'])) {
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-6" >
-            <div class="card mt-5 loginWave shadowCook">
+        <div class="col-lg-6 mb-5" >
+            <div class="card mt-5 mb-5 loginWave shadowCook">
                 <div class="card-body">
                     <h1 class="card-title text-center">Welcome back ! </h1>
                     

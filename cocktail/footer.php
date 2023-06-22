@@ -4,22 +4,9 @@
 						<div class="inner footerInn">
 							<section>
 								<h2 class="shadowCookTxt">CONTACT</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="field">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" /></li>
-									</ul>
-								</form>
+								
+                                <p>Tél : 06 42 42 42 42</p>
+                                <p>Adresse : 404 Avenue des picolos</p>
 							</section>
 							<section>
 								<h2 class="shadowCookTxt">Réseaux</h2>

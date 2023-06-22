@@ -108,7 +108,7 @@ h1 {
     }
 
     .iconeCoock {
-        /* font-size: 3em; */
+        font-size: 3em;
     }
 
     .title {
@@ -117,3 +117,16 @@ h1 {
  
 }
 
+.centerBox {
+    width: 500px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.colorCompte {
+    color: #6c6c85;
+}
+
+.footerInn {
+    padding-left: 3em;
+}
