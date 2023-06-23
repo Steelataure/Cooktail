@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Récupérer les données du formulaire
   $nomCocktail = $_POST['nomCocktail'];
   $description = $_POST['description'];
+  $nbEtape = $_POST['nbEtapes'];
+  
   $isClassic = isset($_POST['isClassic']) ? 1 : 0; // Vérifier si la case à cocher est cochée
 
   // Vérifier si un fichier a été uploadé
@@ -45,6 +47,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $stmtCocktails->bindParam(':imageID', $imageID, PDO::PARAM_INT);
           $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
           $stmtCocktails->execute();
+
+          // Récupérer l'ID de l'image insérée
+          $CocktailID = $dbh->lastInsertId();
+          for ($i = 1; $i <= $nbEtape; $i++) {
+            $inputName = "etape_" . $i;
+            $etapeDesc = $_POST[$inputName];
+            // Insérer les données du cocktail dans la table Cocktails_Recette
+            $queryCocktailEtape = "INSERT INTO Cocktails_Recette (CocktailID, NumeroEtape, Description) VALUES (:CocktailID, :numEtape ,:etapeDesc)";
+            $stmtCocktails = $dbh->prepare($queryCocktailEtape);
+            $stmtCocktails->bindParam(':CocktailID', $CocktailID, PDO::PARAM_STR);
+            $stmtCocktails->bindParam(':numEtape', $i, PDO::PARAM_STR);
+            $stmtCocktails->bindParam(':etapeDesc', $etapeDesc, PDO::PARAM_STR);
+            $stmtCocktails->execute();
+          }
+
+        //   // Récupérer les données JSON envoyées par la requête AJAX
+        //   $jsonData = $_POST['donnees'];
+        //   var_dump($jsonData);
+        //   // Convertir les données JSON en tableau PHP
+        //   $tableau = json_decode($jsonData, true);
+
+        //   // Parcourir le tableau et accéder aux valeurs des champs
+        //   foreach ($tableau as $element) {
+        //     $IngredientID = $element['id'];
+        //     $Ingredientquantite = $element['quantite'];
+
+        //   // Effectuer des opérations avec les valeurs des champs
+        //   // ...
+        //   //Insérer les données du cocktail dans la table Cocktails_Ingredients
+        //    var_dump($element);
+            $queryCocktailIngredient = "INSERT INTO Cocktails_Ingredients (CocktailID, IngredientID, quantite) VALUES (:CocktailID, 6, 1)";
+            $stmtCocktails = $dbh->prepare($queryCocktailIngredient);
+            $stmtCocktails->bindParam(':CocktailID', $CocktailID, PDO::PARAM_INT);
+            $stmtCocktails->execute();
+        //  }
 
           echo "Le cocktail a été ajouté avec succès.";
           if(isset($_POST['isClassic'])){
@@ -137,13 +174,15 @@ if (isset($_SESSION['userID'])) {
                                     _selector.addEventListener('change', function(event2) {
 
                                         if (_selector.checked) {
-                                            var id = '<?php echo $row['Libelle']?>';
+                                            var libelle = '<?php echo $row['Libelle']?>';
                                             var value = _selector.value;
-
+                                            var id = '<?php echo $row['id']?>';
                                             var ingredient = {
-                                                text: id,
+                                                id: id,
+                                                text: libelle,
                                                 color: value
                                             };
+                                            console.log(drink);
                                             ingredient.quantite = "";
 
                                             drink.push(ingredient);
@@ -158,8 +197,8 @@ if (isset($_SESSION['userID'])) {
                                             console.log(drink)
                                             getDrink();
                                         }
+                                        });
                                     });
-                                });
                                 </script>
 
                                 <?php } ?>
@@ -208,6 +247,7 @@ if (isset($_SESSION['userID'])) {
                                     <input style="  background-color: #0000002b;border: 0px; margin-top: 3px;"
                                         type="number" class="inputQTT" id="nbEtapes" name="nbEtapes" required>
                                 </div>
+                                
                                 <div id="etapesContainer"></div>
 
                                 <div class="form-group my-4">
