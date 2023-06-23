@@ -46,6 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
           $stmtCocktails->execute();
 
+          $cocktailID = $dbh->lastInsertId();
+
+           // Insérer les données du cocktail 
+           $queryCocktails = "INSERT INTO Cocktails_Recette (CocktailID, NumeroEtape, ImageID, IsClassic) VALUES (:nomCocktail, :description, :createurID, :imageID, :isClassic)";
+           $stmtCocktails = $dbh->prepare($queryCocktails);
+           $stmtCocktails->bindParam(':nomCocktail', $nomCocktail, PDO::PARAM_STR);
+           $stmtCocktails->bindParam(':description', $description, PDO::PARAM_STR);
+           $stmtCocktails->bindParam(':createurID', $_SESSION['userID'], PDO::PARAM_INT);
+           $stmtCocktails->bindParam(':imageID', $imageID, PDO::PARAM_INT);
+           $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
+           $stmtCocktails->execute();
+
           echo "Le cocktail a été ajouté avec succès.";
           if(isset($_POST['isClassic'])){
             header("Location: shop");
