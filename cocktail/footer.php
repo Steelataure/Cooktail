@@ -20,6 +20,7 @@
 							</section>
 							<ul class="copyright">
 								<li>&copy; Projet Etudiant</li><li><a href=""> Paris</a></li>
+								<li>L’abus <strong>d’alcool</strong> est <strong>d'angereux</strong> pour la santé, à consommer avec modération.</li>
 							</ul>
 						</div>
 					</footer>
