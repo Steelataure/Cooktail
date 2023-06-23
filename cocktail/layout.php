@@ -60,7 +60,7 @@
                 </li>
 
                 <li class="">
-                    <a class="nav-link userBar" href="login"><i class="fas fa-shopping-basket shadowCookTxt "></i></a>
+                    <a class="nav-link userBar" href="panier"><i class="fas fa-shopping-basket shadowCookTxt "></i></a>
                 </li>
                 <?php } else { ?>
                 <li class="">
