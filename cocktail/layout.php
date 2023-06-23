@@ -46,12 +46,10 @@
                 <h4 class="waveTitle iconeCoock"><i class="fas fa-cocktail"></i>Cooktail</h4>
             </a>
         </div>
+
         <div class=" col-5">
             <div class="row iconeMenu">
                 <?php if (isset($_SESSION['isLogged'])) { ?>
-
-
-
                 <li class="nav-item">
                     <!-- <span>Connecté en tant que : <?php echo $_SESSION['isLogged']; ?></span> -->
                     <form method="POST" action="logout">
@@ -76,9 +74,8 @@
                     <a class="nav-link userBar" href="#menu"><i class="fas fa-bars shadowCookTxt "></i></a>
                 </li>
             </div>
-
         </div>
-
+        
     </header>
 
     <!-- Menu -->
@@ -92,10 +89,8 @@
             <li><a href="cocktail_maker"><i class="mr-4 fas fa-wine-glass-alt"></i>Cocktail Maker</a></li>
             <li><a href="panier"><i class="mr-4 fas fa-shopping-cart"></i>Panier</a></li>
         </ul>
-
     </nav>
 
-    </header>
 
     <main>
         <!-- Le contenu spécifique à chaque page sera inséré ici -->

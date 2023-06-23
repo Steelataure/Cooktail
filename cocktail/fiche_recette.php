@@ -157,7 +157,7 @@ $rootDir = basename(dirname($rootDir));
 
 <div class="container">
     <div class="order-form mb-5">
-        <div class="card shadowCook mb-5">
+        <div class="card shadowCook mb-5" style="width: 90%;">
             <img class="card-img-top shadowCook" src="<?php echo DIRECTORY_SEPARATOR . $rootDir . DIRECTORY_SEPARATOR . $imagePath; ?>" alt="Item Image">
             <div class="card-body">
                 <h1 class="card-title"><?php echo $title; ?></h1>
