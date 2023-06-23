@@ -36,7 +36,6 @@ $dbh = include '../config/config.php';
                        'X-Mailer' => 'PHP/' . phpversion()
                    );
 
-        //mail($_POST['email'], $subject, $message, $headers):
         if (mail($_POST['email'], $subject, $message, $headers))
         {
             $stmt = $db->prepare("UPDATE user SET password = ? WHERE email = ?");
