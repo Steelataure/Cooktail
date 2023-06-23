@@ -13,7 +13,7 @@ $dbh = include '../config/config.php';
                         <div class="form-group">
                             <label for="email"><b>Email</b></label>
                             <input type="email" placeholder="Entre votre Email" name="email" required>
-                            <button type="submit" name="randomMdp">random mot de passe</button>
+                            <button type="submit" name="randomMdp">Valide</button>
                         </div>
                     </form>
                 </div>
