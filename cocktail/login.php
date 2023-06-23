@@ -27,6 +27,7 @@ if (isset($_SESSION['isLogged'])) {
                         <button type="submit" class="primary btnConnexion" name="connexion">Connexion</button>
                         <a class="btn colorCompte" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
                             !</a>
+                            <a class="btn colorCompte" href="#">Mot de pass oublier?</a>
                     </form>
                 </div>
             </div>
