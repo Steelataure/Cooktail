@@ -31,9 +31,9 @@ $dbh = include '../config/config.php';
         $subject = 'Mot de passe oublié';
         $message = "Bonjour, voici votre nouveau mot de passe : $password";
         $headers = array(
-                       'From' => 'senecalpaul@outlook.fr',
-                       'Reply-To' => $_POST['email'],
-                       'X-Mailer' => 'PHP/' . phpversion()
+                       "From" => "senecalpaul@outlook.fr",
+                       "Reply-To" => "senecalpaul@outlook.fr",
+                       "X-Mailer" => 'PHP/' . phpversion()
                    );
 
         if (mail($_POST['email'], $subject, $message, $headers))
