@@ -14,7 +14,6 @@ if (isset($_SESSION['isLogged'])) {
             <div class="card mt-5 mb-5 loginWave shadowCook">
                 <div class="card-body">
                     <h1 class="card-title text-center">Welcome back ! </h1>
-                    
                     <form method="POST">
                         <div class="form-group">
                             <label for="username">Pseudo</label>
@@ -27,7 +26,7 @@ if (isset($_SESSION['isLogged'])) {
                         <button type="submit" class="primary btnConnexion" name="connexion">Connexion</button>
                         <a class="btn colorCompte" href="inscription">Vous n'avez pas de compte ? Créez-vous en un
                             !</a>
-                            <a class="btn colorCompte" href="#">Mot de pass oublier?</a>
+                            <a class="btn colorCompte" target="_blank" href="forgotPassword.php">Mot de pass oublier?</a>
                     </form>
                 </div>
             </div>
