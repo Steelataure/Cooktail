@@ -46,18 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
           $stmtCocktails->execute();
 
-          $cocktailID = $dbh->lastInsertId();
-
-           // Insérer les données du cocktail 
-           $queryCocktails = "INSERT INTO Cocktails_Recette (CocktailID, NumeroEtape, ImageID, IsClassic) VALUES (:nomCocktail, :description, :createurID, :imageID, :isClassic)";
-           $stmtCocktails = $dbh->prepare($queryCocktails);
-           $stmtCocktails->bindParam(':nomCocktail', $nomCocktail, PDO::PARAM_STR);
-           $stmtCocktails->bindParam(':description', $description, PDO::PARAM_STR);
-           $stmtCocktails->bindParam(':createurID', $_SESSION['userID'], PDO::PARAM_INT);
-           $stmtCocktails->bindParam(':imageID', $imageID, PDO::PARAM_INT);
-           $stmtCocktails->bindParam(':isClassic', $isClassic, PDO::PARAM_INT);
-           $stmtCocktails->execute();
-
           echo "Le cocktail a été ajouté avec succès.";
           if(isset($_POST['isClassic'])){
             header("Location: shop");
@@ -215,6 +203,12 @@ if (isset($_SESSION['userID'])) {
                                 </div>
                                 <textarea class="form-control" id="description" name="description" rows="6"
                                     required></textarea>
+                                <div class="form-group">
+                                    <label for="nbEtapes" style="margin-top: 20px;">Nombre d'étapes :</label>
+                                    <input style="  background-color: #0000002b;border: 0px; margin-top: 3px;"
+                                        type="number" class="inputQTT" id="nbEtapes" name="nbEtapes" required>
+                                </div>
+                                <div id="etapesContainer"></div>
 
                                 <div class="form-group my-4">
                                     <label for="image">Image du cocktail</label>
@@ -226,9 +220,6 @@ if (isset($_SESSION['userID'])) {
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="isClassic" name="isClassic">
-                                        <!-- <form method="">
-
-                                        </form> -->
                                         <label class="form-check-label" for="isClassic">Mettre en
                                             magasin</label>
                                     </div>
@@ -250,6 +241,26 @@ if (isset($_SESSION['userID'])) {
     <script>
     var drink = [];
     var quantite = "";
+
+    document.getElementById('nbEtapes').addEventListener('input', function() {
+        var etapesContainer = document.getElementById('etapesContainer');
+        var nbEtapes = parseInt(this.value);
+
+        // Réinitialiser le contenu du conteneur des étapes
+        etapesContainer.innerHTML = '';
+
+        // Générer les champs d'étape en fonction du nombre d'étapes
+        for (var i = 1; i <= nbEtapes; i++) {
+            var etapeInput = document.createElement('input');
+            etapeInput.type = 'text';
+            etapeInput.className = 'inputQTT';
+            etapeInput.name = 'etape_' + i;
+            etapeInput.style.marginBottom = '10px';
+            etapeInput.style.padding = '25px 0px';
+            etapeInput.placeholder = 'Étape ' + i;
+            etapesContainer.appendChild(etapeInput);
+        }
+    });
     </script>
     <!-- partial -->
     <script src='https://cdn.jsdelivr.net/npm/zdog'></script>
