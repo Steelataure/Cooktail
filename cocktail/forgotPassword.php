@@ -47,4 +47,6 @@ $dbh = include '../config/config.php';
             echo "Une erreur est survenue";
         }
     }
+    include 'layout.php';
+    include 'footer.php';
 ?>
