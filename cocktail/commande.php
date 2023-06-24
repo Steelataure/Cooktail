@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 document.getElementById('quantity').addEventListener('input', function() {
     var quantity = this.value;
     var totalAmount = <?php echo $price; ?> * quantity;
-    document.querySelector('.total-amount').innerHTML = 'Total : $' + totalAmount.toFixed(2);
+    document.querySelector('.total-amount').innerHTML = 'Total : €' + totalAmount.toFixed(2);
 });
 </script>
 
